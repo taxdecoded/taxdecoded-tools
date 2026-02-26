@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Should I Itemize? | TaxDecoded — 2025 Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:460px;margin:8px auto 0}
+.pw{margin-bottom:24px}.pw .pl{font-size:12px;color:var(--text-lt);margin-bottom:8px;font-weight:500}
+.pb{display:flex;gap:5px}.ps{flex:1;height:4px;border-radius:2px;background:var(--bdr);transition:background .4s}.ps.a{background:var(--gold)}.ps.d{background:var(--navy)}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ro{position:relative}.ro input{position:absolute;opacity:0;pointer-events:none}
+.ro label{display:flex;align-items:center;justify-content:center;padding:11px 8px;border:2px solid var(--bdr);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;background:var(--white)}
+.ro input:checked+label{border-color:var(--navy);background:var(--navy);color:var(--gold-light)}.ro label:hover{border-color:var(--gold)}
+.tr{display:flex;align-items:center;justify-content:space-between;padding:10px 0}.tr span{font-size:13px;font-weight:500}
+.tg{position:relative;width:42px;height:23px}.tg input{opacity:0;width:0;height:0}
+.ts{position:absolute;inset:0;background:var(--bdr);border-radius:12px;cursor:pointer;transition:.25s}
+.ts::before{content:'';position:absolute;width:17px;height:17px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.tg input:checked+.ts{background:var(--navy)}.tg input:checked+.ts::before{transform:translateX(19px)}
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.tip .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.tip:hover .tt,.tip:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bs{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bs:hover{border-color:var(--gold)}
+/* Results */
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;border:2px solid;position:relative;overflow:hidden}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;border-radius:50%;opacity:.06;background:var(--gold)}
+.rh.r-it{background:linear-gradient(145deg,#edf8f2,#daf1e3);border-color:#aeddc6}
+.rh.r-st{background:linear-gradient(145deg,var(--gold-bg),#f5ebd0);border-color:var(--gold-light)}
+.rh.r-cc{background:linear-gradient(145deg,#fef9ee,#fdf0d4);border-color:#e8d48c}
+.rh>*{position:relative;z-index:1}
+.rec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+.rh.r-it .rec-label{background:rgba(45,133,94,.12);color:var(--green-dk)}
+.rh.r-st .rec-label{background:rgba(197,165,90,.15);color:var(--gold-dark)}
+.rh.r-cc .rec-label{background:rgba(180,140,30,.12);color:#8a6d1b}
+.rh h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.sav{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sav .sv-a{font-size:42px;font-weight:700;font-family:'Playfair Display',serif;color:var(--navy);line-height:1.1}
+.sav .sv-l{font-size:13px;color:var(--text-sec);font-weight:500;margin-top:4px}
+.sav .sv-ln{width:48px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:1px}
+.cmp{display:grid;grid-template-columns:1fr 36px 1fr;align-items:stretch;margin-bottom:24px}
+.cc2{background:var(--white);border-radius:var(--r);padding:20px 14px;text-align:center;box-shadow:var(--sh-sm);border:2px solid var(--bdr-lt);transition:all .2s}
+.cc2.w{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,39,68,.08)}
+.cc2 .cl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-lt);margin-bottom:8px}
+.cc2 .ca{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy)}
+.cc2.w .cl{color:var(--gold-dark)}
+.wt{display:inline-block;margin-top:8px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-dk);background:var(--green-pale);padding:3px 10px;border-radius:10px}
+.cv{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-lt)}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .bx{font-size:11px;color:var(--red);font-weight:500;margin-top:1px}
+.bw .sub{font-size:11px;color:var(--text-lt)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fdf6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+/* Print */
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}
+  .hdr,.pw,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+  .ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0;border-radius:2px}
+  .ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+  .ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;margin-bottom:4px}
+  .pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}
+  .pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}
+  .pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0;border-radius:1px}
+  .rh{break-inside:avoid;margin-top:24px;box-shadow:none!important;border:2px solid var(--bdr)!important}.rh::before,.rh::after{display:none}
+  .cmp{break-inside:avoid}.cc2{box-shadow:none!important;border:1.5px solid var(--bdr)!important}.cc2.w{border:2px solid var(--navy)!important}
+  .bd{box-shadow:none!important;break-inside:avoid;border:1px solid var(--bdr)!important}
+  .nb{break-inside:avoid}.card{box-shadow:none!important}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:28px}.rg{grid-template-columns:1fr}.cmp{grid-template-columns:1fr;gap:8px}.cv{transform:rotate(90deg);padding:4px 0}.sav .sv-a{font-size:32px}.rh h2{font-size:22px}}
+
+
+
+/* Error messages */
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+
+/* === Mobile Fixes === */
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input,.ni input{min-height:44px;font-size:16px}
+select{font-size:16px}
+
+</style>
+</head>
+<body>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Standard vs. Itemized Deduction Analysis</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div>
+    <div class="brand-line"></div>
+    <div class="hdr-badge">Standard vs. Itemized &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>Stop Guessing.<br><em>Start Saving.</em></h1>
+    <p>Find out if itemizing or the standard deduction saves you more &mdash; updated for the OBBBA, including the new $40,000 SALT cap and enhanced senior deduction.</p>
+  </div>
+  <div class="pw"><div class="pl">Step <span id="sn">1</span> of 5</div><div class="pb"><div class="ps a" id="p1"></div><div class="ps" id="p2"></div><div class="ps" id="p3"></div><div class="ps" id="p4"></div><div class="ps" id="p5"></div></div></div>
+
+  <!-- Step 1 -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Your Filing Information</div></div><div class="ci">Enter your numbers in the <strong>highlighted gold fields</strong>. Everything else calculates automatically.</div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
+    <div class="f"><label>Your Adjusted Gross Income (AGI) <span class="tip" tabindex="0">?<span class="tt">AGI = total income minus above-the-line deductions (Form 1040, Line 11).</span></span></label><div class="di"><input type="text" id="magi" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><div class="tr"><span>Are you age 65 or older?</span><input type="checkbox" id="a65s" style="width:22px;height:22px;accent-color:var(--navy);cursor:pointer;flex-shrink:0"></div><div class="tr"><span>Are you legally blind?</span><input type="checkbox" id="bls" style="width:22px;height:22px;accent-color:var(--navy);cursor:pointer;flex-shrink:0"></div><div id="spr" style="display:none"><div class="tr"><span>Spouse age 65+?</span><input type="checkbox" id="a65p" style="width:22px;height:22px;accent-color:var(--navy);cursor:pointer;flex-shrink:0"></div><div class="tr"><span>Spouse legally blind?</span><input type="checkbox" id="blp" style="width:22px;height:22px;accent-color:var(--navy);cursor:pointer;flex-shrink:0"></div></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 2 -->
+  <div class="step" id="s2"><div class="card"><div class="ch"><div class="ct">Step 2: State &amp; Local Taxes (SALT)</div><div class="cs">New $40,000 cap under the One Big Beautiful Bill Act</div></div><div class="ci">The SALT deduction cap increased from $10,000 to <strong>$40,000</strong> for 2025. You can deduct income tax <strong>or</strong> sales tax (not both) &mdash; we pick the higher one.</div>
+    <div class="f"><label>State &amp; local income taxes paid</label><div class="di"><input type="text" id="si" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>State &amp; local sales taxes paid <span class="tip" tabindex="0">?<span class="tt">If you live in a no-income-tax state (TX, FL, WA, etc.) you may deduct sales tax instead.</span></span></label><div class="di"><input type="text" id="ss" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Real property taxes paid <span class="tip" tabindex="0">?<span class="tt">Property taxes on homes, vacation properties. Check your county tax statement or mortgage escrow summary.</span></span></label><div class="di"><input type="text" id="sp" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Personal property taxes</label><div class="ht">Annual taxes on vehicles/boats based on value (not all states).</div><div class="di"><input type="text" id="spp" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn2">&larr; Back</button><button class="btn bp" data-btn-id="btn3">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 3 -->
+  <div class="step" id="s3"><div class="card"><div class="ch"><div class="ct">Step 3: Mortgage Interest</div></div>
+    <div class="f"><label>Mortgage interest paid <span class="tip" tabindex="0">?<span class="tt">From Form 1098. Deductible on up to $750K of acquisition debt ($375K MFS).</span></span></label><div class="di"><input type="text" id="mi" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn4">&larr; Back</button><button class="btn bp" data-btn-id="btn5">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 4 -->
+  <div class="step" id="s4"><div class="card"><div class="ch"><div class="ct">Step 4: Charitable &amp; Medical</div></div>
+    <div class="f"><label>Charitable contributions &mdash; cash</label><div class="ht">Donations to qualified 501(c)(3) organizations. Generally limited to 60% of AGI.</div><div class="di"><input type="text" id="chc" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Charitable contributions &mdash; non-cash</label><div class="ht">Donated clothing, household items, stock, vehicles at fair market value.</div><div class="di"><input type="text" id="chn" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Medical &amp; dental expenses <span class="tip" tabindex="0">?<span class="tt">Out-of-pocket costs not reimbursed by insurance. Only amounts over 7.5% of AGI are deductible.</span></span></label><div class="di"><input type="text" id="md" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn6">&larr; Back</button><button class="btn bp" data-btn-id="btn7">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 5 -->
+  <div class="step" id="s5"><div class="card"><div class="ch"><div class="ct">Step 5: Other Deductions</div></div>
+    <div class="f"><div class="tr"><span>Casualty/theft losses from a federally declared disaster?</span><input type="checkbox" id="cst" style="width:22px;height:22px;accent-color:var(--navy);cursor:pointer;flex-shrink:0"></div><div id="cf" style="display:none;margin-top:8px"><label>Net casualty/theft loss amount</label><div class="di"><input type="text" id="ca" placeholder="0" inputmode="numeric"></div></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn8">&larr; Back</button><button class="btn bp" data-btn-id="btn9">See My Results &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This analysis is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance specific to your situation.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Tax laws are complex and individual circumstances vary. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+document.querySelectorAll('.di input').forEach(i=>{i.addEventListener('blur',function(){let n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+document.getElementById('flSelect').addEventListener('change',function(){$('spr').style.display=(this.value==='mfj'||this.value==='mfs')?'block':'none'});
+$('cst').addEventListener('change',function(){$('cf').style.display=this.checked?'block':'none'});
+
+let cs=1;
+function go(n){
+  if(n>1&&cs===1){
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(!document.getElementById('flSelect').value){em.textContent='\u26a0 Please select a filing status above.';em.style.display='block';return}
+    if(pv('magi')<=0){em.textContent='\u26a0 Please enter your AGI above.';em.style.display='block';return}
+    em.style.display='none'}
+  $(cs<=5?'s'+cs:'sr').classList.remove('active');$(n<=5?'s'+n:'sr').classList.add('active');
+  for(let i=1;i<=5;i++){let e=$('p'+i);e.className='ps';if(i<n)e.classList.add('d');else if(i===n)e.classList.add('a')}
+  $('sn').textContent=Math.min(n,5);cs=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ===== 2025 Tax Brackets (OBBBA permanent rates) ===== */
+const bk={
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+function margRate(ti,f){for(const[l,r]of bk[f])if(ti<=l)return r;return .37}
+function calcTax(ti,f){let t=0,p=0;for(const[l,r]of bk[f]){let a=Math.min(ti,l)-p;if(a<=0)break;t+=a*r;p=l}return t}
+
+function calc(){
+  const f=document.getElementById('flSelect').value;
+  const m=pv('magi'); // AGI / MAGI
+  const fsLabel={single:'Single',mfj:'Married Filing Jointly',mfs:'Married Filing Separately',hoh:'Head of Household'}[f];
+  const is65=($('a65s').checked), isBl=($('bls').checked);
+  const sp65=($('a65p').checked), spBl=($('blp').checked);
+
+  /* ===== STANDARD DEDUCTION ===== */
+  // Base amounts (OBBBA permanent, per IRS)
+  const stdBase={single:15750,mfj:31500,mfs:15750,hoh:23625}[f];
+  // Additional for age 65+ and blind
+  let stdExtra=0;
+  const extraAmt=(f==='single'||f==='hoh')?2000:1600;
+  if(is65) stdExtra+=extraAmt;
+  if(isBl) stdExtra+=extraAmt;
+  if(f==='mfj'||f==='mfs'){if(sp65) stdExtra+=1600; if(spBl) stdExtra+=1600;}
+  const stdDed=stdBase+stdExtra;
+
+  // OBBBA Enhanced Senior Deduction (Sec 70102) - $6,000/person, 2025-2028
+  // Phases out at 6% of MAGI over $75K single/$150K MFJ
+  // Available to BOTH itemizers and non-itemizers (stacks on top)
+  let seniorBonus=0;
+  let seniorBonusNote='';
+  if(is65||sp65){
+    let maxBonus=0;
+    if(is65) maxBonus+=6000;
+    if(sp65 && (f==='mfj'||f==='mfs')) maxBonus+=6000;
+    const seniorThreshold=(f==='mfj')?150000:(f==='mfs')?75000:(f==='single'||f==='hoh')?75000:75000;
+    if(m>seniorThreshold){
+      const reduction=(m-seniorThreshold)*0.06;
+      seniorBonus=Math.max(maxBonus-reduction,0);
+    } else {
+      seniorBonus=maxBonus;
+    }
+    if(seniorBonus>0){
+      seniorBonusNote=`You also qualify for the OBBBA Enhanced Senior Deduction of $${fw(seniorBonus)}. This applies whether you itemize or take the standard deduction.`;
+    } else {
+      seniorBonusNote='The OBBBA Enhanced Senior Deduction has fully phased out at your income level.';
+    }
+  }
+
+  /* ===== SALT ===== */
+  const saltInc=pv('si'), saltSales=pv('ss'), saltProp=pv('sp'), saltPers=pv('spp');
+  const saltIncOrSales=Math.max(saltInc,saltSales);
+  const saltGross=saltIncOrSales+saltProp+saltPers;
+  // SALT cap: $40K ($20K MFS), phaseout 30% of excess over $500K ($250K MFS), floor $10K ($5K MFS)
+  const saltCapBase=(f==='mfs')?20000:40000;
+  const saltCapFloor=(f==='mfs')?5000:10000;
+  const saltThreshold=(f==='mfs')?250000:500000;
+  let saltCap=saltCapBase;
+  if(m>saltThreshold){
+    saltCap=Math.max(saltCapBase-(m-saltThreshold)*0.30, saltCapFloor);
+  }
+  const saltAllowed=Math.min(saltGross,saltCap);
+  const saltDisallowed=Math.max(saltGross-saltAllowed,0);
+
+  /* ===== OTHER ITEMIZED ===== */
+  const mortInt=pv('mi');
+  const charCash=pv('chc'), charNon=pv('chn'), charTotal=charCash+charNon;
+  const medGross=pv('md'), medFloor=m*0.075, medAllowed=Math.max(medGross-medFloor,0);
+  const casualty=($('cst').checked)?pv('ca'):0;
+
+  /* ===== TOTAL ITEMIZED (before 2/37 limitation) ===== */
+  const itemizedRaw=saltAllowed+mortInt+charTotal+medAllowed+casualty;
+
+  /* ===== 2/37 Limitation (Pease replacement) ===== */
+  // OBBBA: For taxpayers in the 37% bracket, itemized deductions provide only 35% tax benefit
+  // This is effectively a 2/37 = ~5.4% haircut on the tax VALUE of deductions
+  // The deduction amount itself stays the same, but we note the reduced benefit
+  const taxableIfItemize=Math.max(m-itemizedRaw-seniorBonus,0);
+  const in37bracket=taxableIfItemize > (f==='mfj'?751600:f==='mfs'?375800:f==='hoh'?626350:626350);
+  // Note: The 2/37 rule affects the TAX BENEFIT, not the deduction amount
+  // We'll note this but calculate tax normally since the exact mechanics are complex
+
+  /* ===== COMPARISON ===== */
+  // With standard: taxable = AGI - stdDed - seniorBonus
+  // With itemized: taxable = AGI - itemizedRaw - seniorBonus
+  // seniorBonus applies either way
+  const taxableStd=Math.max(m-stdDed-seniorBonus,0);
+  const taxableItem=Math.max(m-itemizedRaw-seniorBonus,0);
+  const taxStd=calcTax(taxableStd,f);
+  const taxItem=calcTax(taxableItem,f);
+  const taxSavings=Math.abs(taxStd-taxItem);
+  const diff=itemizedRaw-stdDed;
+  const absDiff=Math.abs(diff);
+  const isClose=absDiff<1000&&absDiff>0;
+  const shouldItemize=diff>0;
+  const mg=margRate(taxableStd,f);
+
+  /* ===== BUILD RESULTS HTML ===== */
+  let rc2,hl,rlabel;
+  if(isClose){rc2='r-cc';hl="It's a Close Call";rlabel='Close Call'}
+  else if(shouldItemize){rc2='r-it';hl='You Should Itemize';rlabel='Recommendation: Itemize'}
+  else{rc2='r-st';hl='Take the Standard Deduction';rlabel='Recommendation: Standard'}
+
+  let h=`<div class="rh ${rc2}">
+    <div class="rec-label">${rlabel}</div>
+    <h2>${hl}</h2>
+    <div class="sav">
+      <div class="sv-a">$${fm(taxSavings)}</div>
+      <div class="sv-l">estimated tax savings by ${shouldItemize?'itemizing':'taking the standard deduction'}</div>
+      <div class="sv-ln"></div>
+    </div>
+  </div>
+  <div class="cmp">
+    <div class="cc2 ${!shouldItemize?'w':''}"><div class="cl">Standard Deduction</div><div class="ca">$${fw(stdDed)}</div>${!shouldItemize?'<div class="wt">Better for you</div>':''}</div>
+    <div class="cv">VS</div>
+    <div class="cc2 ${shouldItemize?'w':''}"><div class="cl">Itemized Deductions</div><div class="ca">$${fw(itemizedRaw)}</div>${shouldItemize?'<div class="wt">Better for you</div>':''}</div>
+  </div>`;
+
+  if(isClose) h+=`<div class="nb am"><strong>Your deductions are within $1,000 of each other.</strong> A few extra donations or a property tax prepayment could tip the balance. Consider consulting a tax professional.</div>`;
+  if(f==='mfs') h+=`<div class="nb blu"><strong>MFS Note:</strong> If one spouse itemizes, the other must also itemize. You cannot mix standard and itemized on MFS returns.</div>`;
+  if(seniorBonus>0) h+=`<div class="nb grn"><strong>OBBBA Senior Bonus:</strong> ${seniorBonusNote} This $${fw(seniorBonus)} deduction is already factored into both scenarios above.</div>`;
+  else if(seniorBonusNote) h+=`<div class="nb am"><strong>Senior Deduction Note:</strong> ${seniorBonusNote}</div>`;
+  if(in37bracket) h+=`<div class="nb am"><strong>Top Bracket Note:</strong> Because your taxable income reaches the 37% bracket, the OBBBA's 2/37 rule may slightly reduce the tax benefit of your itemized deductions (a ~5.4% haircut on deductions taxed at 37%). This calculator does not model this reduction &mdash; consult a tax professional for the precise impact.</div>`;
+
+  // Itemized breakdown
+  h+=`<div class="bd"><div class="bh">Your Itemized Deductions Breakdown</div>
+    <div class="bw"><div><div class="bl">State &amp; Local Taxes (SALT)</div>${saltDisallowed>0?`<div class="bx">$${fw(saltDisallowed)} exceeds the $${fw(saltCap)} cap &mdash; not deductible</div>`:''}</div><div class="bv">$${fw(saltAllowed)}</div></div>`;
+  if(saltGross>0) h+=`<div class="bw" style="padding-left:32px"><div class="sub">${saltInc>=saltSales?'Income':'Sales'} tax: $${fw(saltIncOrSales)} &middot; Property + personal: $${fw(saltProp+saltPers)} &middot; Cap: $${fw(saltCap)}${m>saltThreshold?' (reduced by MAGI phaseout)':''}</div><div></div></div>`;
+  h+=`<div class="bw"><div class="bl">Mortgage Interest</div><div class="bv">$${fw(mortInt)}</div></div>
+    <div class="bw"><div class="bl">Charitable Contributions</div><div class="bv">$${fw(charTotal)}</div></div>
+    <div class="bw"><div><div class="bl">Medical &amp; Dental</div>${medGross>0?`<div class="sub">Only amounts over 7.5% of AGI ($${fw(medFloor)}) are deductible</div>`:''}</div><div class="bv">$${fw(medAllowed)}</div></div>`;
+  if(casualty>0) h+=`<div class="bw"><div class="bl">Casualty &amp; Theft Losses</div><div class="bv">$${fw(casualty)}</div></div>`;
+  h+=`<div class="bw tot"><div class="bl">Total Itemized Deductions</div><div class="bv">$${fw(itemizedRaw)}</div></div></div>`;
+
+  // Standard deduction breakdown
+  h+=`<div class="bd"><div class="bh">Your Standard Deduction</div>
+    <div class="bw"><div class="bl">Base amount &mdash; ${fsLabel}</div><div class="bv">$${fw(stdBase)}</div></div>`;
+  if(stdExtra>0) h+=`<div class="bw"><div class="bl">Additional (age 65+ / blind)</div><div class="bv">+$${fw(stdExtra)}</div></div>`;
+  h+=`<div class="bw tot"><div class="bl">Your Standard Deduction</div><div class="bv">$${fw(stdDed)}</div></div></div>`;
+
+  // Senior bonus (if applicable)
+  if(seniorBonus>0){
+    h+=`<div class="bd"><div class="bh">OBBBA Enhanced Senior Deduction</div>
+      <div class="bw"><div class="bl">Senior bonus ($6,000 per qualifying person)</div><div class="bv">$${fw(seniorBonus)}</div></div>
+      <div class="bw"><div class="sub">Available to both itemizers and non-itemizers. Phases out at 6% of MAGI over $${fw(f==='mfj'?150000:75000)}.</div><div></div></div></div>`;
+  }
+
+  // Tax impact
+  h+=`<div class="bd"><div class="bh">Tax Impact Comparison</div>
+    <div class="bw"><div class="bl">Adjusted Gross Income</div><div class="bv">$${fw(m)}</div></div>`;
+  if(seniorBonus>0) h+=`<div class="bw"><div class="bl">Less: Senior bonus deduction</div><div class="bv">-$${fw(seniorBonus)}</div></div>`;
+  h+=`<div class="bw"><div class="bl">Marginal tax rate</div><div class="bv">${(mg*100).toFixed(0)}%</div></div>
+    <div class="bw"><div class="bl">Federal tax with standard deduction</div><div class="bv">$${fm(taxStd)}</div></div>
+    <div class="bw"><div class="bl">Federal tax if itemizing</div><div class="bv">$${fm(taxItem)}</div></div>
+    <div class="bw tot"><div class="bl">Your Estimated Tax Savings</div><div class="bv" style="color:var(--green-dk)">$${fm(taxSavings)}</div></div></div>`;
+
+  h+=`<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>`;
+  $('rc').innerHTML=h;
+  $('s'+cs).classList.remove('active');$('sr').classList.add('active');
+  for(let i=1;i<=5;i++)$('p'+i).className='ps d';
+  $('sn').textContent='\u2713';cs=6;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');cs=1;
+  for(let i=1;i<=5;i++){let e=$('p'+i);e.className='ps';if(i===1)e.classList.add('a')}
+  $('sn').textContent='1';
+  document.querySelectorAll('.di input').forEach(i=>i.value='');
+  document.querySelectorAll('input[type="checkbox"]').forEach(i=>i.checked=false);
+  var flSel=document.getElementById('flSelect');if(flSel)flSel.selectedIndex=0;
+  $('spr').style.display='none';$('cf').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+
+<script>
+// Wire up all buttons via addEventListener (iOS Files WebView compatible)
+document.addEventListener("DOMContentLoaded", function(){
+  var b_btn1=document.querySelector('[data-btn-id="btn1"]');
+  if(b_btn1)b_btn1.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b_btn2=document.querySelector('[data-btn-id="btn2"]');
+  if(b_btn2)b_btn2.addEventListener("click",function(e){e.preventDefault();go(1)});
+  var b_btn3=document.querySelector('[data-btn-id="btn3"]');
+  if(b_btn3)b_btn3.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b_btn4=document.querySelector('[data-btn-id="btn4"]');
+  if(b_btn4)b_btn4.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b_btn5=document.querySelector('[data-btn-id="btn5"]');
+  if(b_btn5)b_btn5.addEventListener("click",function(e){e.preventDefault();go(4)});
+  var b_btn6=document.querySelector('[data-btn-id="btn6"]');
+  if(b_btn6)b_btn6.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b_btn7=document.querySelector('[data-btn-id="btn7"]');
+  if(b_btn7)b_btn7.addEventListener("click",function(e){e.preventDefault();go(5)});
+  var b_btn8=document.querySelector('[data-btn-id="btn8"]');
+  if(b_btn8)b_btn8.addEventListener("click",function(e){e.preventDefault();go(4)});
+  var b_btn9=document.querySelector('[data-btn-id="btn9"]');
+  if(b_btn9)b_btn9.addEventListener("click",function(e){e.preventDefault();calc()});
+  var b_btn10=document.querySelector('[data-btn-id="btn10"]');
+  if(b_btn10)b_btn10.addEventListener("click",function(e){e.preventDefault();window.print()});
+  var b_btn11=document.querySelector('[data-btn-id="btn11"]');
+  if(b_btn11)b_btn11.addEventListener("click",function(e){e.preventDefault();startOver()});
+});
+</script>
+<script>
+// Event delegation for dynamically created buttons
+document.addEventListener("click", function(e){
+  var t = e.target;
+  if(t.tagName==="BUTTON" || t.closest("button")){
+    t = t.closest("button") || t;
+    var action = t.getAttribute("data-action");
+    if(action==="print") window.print();
+    if(action==="startOver") startOver();
+  }
+});
+</script>
+</body>
+</html>

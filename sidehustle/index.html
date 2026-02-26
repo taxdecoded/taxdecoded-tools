@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side Hustle Tax Calculator | TaxDecoded — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--red-pale:#fce8e6;--amber:#b8860b;--amber-pale:#fef6e0;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:480px;margin:8px auto 0}
+.pw{margin-bottom:24px}.pw .pl{font-size:12px;color:var(--text-lt);margin-bottom:8px;font-weight:500}
+.pb{display:flex;gap:5px}.ps{flex:1;height:4px;border-radius:2px;background:var(--bdr);transition:background .4s}.ps.a{background:var(--gold)}.ps.d{background:var(--navy)}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f>label,.f .fl{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.ni input{width:100%;padding:11px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.ni input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.ni input::placeholder{color:var(--text-lt)}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ro{position:relative}.ro input{position:absolute;opacity:0;pointer-events:none}
+.ro label{display:flex;align-items:center;justify-content:center;padding:11px 8px;border:2px solid var(--bdr);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;background:var(--white)}
+.ro input:checked+label{border-color:var(--navy);background:var(--navy);color:var(--gold-light)}.ro label:hover{border-color:var(--gold)}
+.it{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.it .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.it:hover .tt,.it:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bk{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bk:hover{border-color:var(--gold)}
+/* Results */
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;background:linear-gradient(145deg,var(--gold-bg),#f5ebd0);border:2px solid var(--gold-light);position:relative;overflow:hidden}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh>*{position:relative;z-index:1}
+.rh h2{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.rh .big{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--navy);line-height:1.1}
+.rh .sub{font-size:13px;color:var(--text-sec);margin-top:4px}
+.rh .sv-ln{width:48px;height:2px;background:var(--gold);margin:14px auto 0;border-radius:1px}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .bx{font-size:11px;color:var(--red);font-weight:500;margin-top:1px}
+.bw .sub2{font-size:11px;color:var(--text-lt);line-height:1.5}
+.bw.note-row{flex-direction:column;align-items:flex-start;gap:0;padding-top:0;padding-bottom:8px;background:rgba(197,165,90,.03)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.bw.tot2{background:#edf8f2;font-weight:700;font-size:14px;border-bottom:none}.bw.tot2 .bl{color:var(--green-dk)}.bw.tot2 .bv{color:var(--green-dk)}
+.bw.warn{background:var(--red-pale);font-weight:600}.bw.warn .bl{color:var(--red)}.bw.warn .bv{color:var(--red)}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fef6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}.nb.blu strong{color:#1a2d4a}
+/* Quarterly cards */
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.qcard{background:var(--white);border:1.5px solid var(--bdr-lt);border-radius:var(--r);padding:16px;text-align:center}
+.qcard .ql{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-lt);margin-bottom:4px}
+.qcard .qa{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy)}
+.qcard .qd{font-size:11px;color:var(--text-sec);margin-top:2px}
+.qcard.past{opacity:.5;border-style:dashed}
+.qcard.next{border-color:var(--gold);background:var(--gold-bg);box-shadow:0 0 0 2px rgba(197,165,90,.15)}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+.alt-label{font-size:12px;font-weight:600;color:var(--text-lt);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px}
+/* Print */
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}.hdr,.pw,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}.ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0}.ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}.ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700}.pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}.pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}.pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0}
+  .bd,.rh,.qgrid,.nb{break-inside:avoid;box-shadow:none!important}.rh::before{display:none}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:26px}.rg{grid-template-columns:1fr}.qgrid{grid-template-columns:1fr}.rh .big{font-size:30px}}
+
+
+
+/* Error messages */
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+
+/* === Mobile Fixes === */
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input,.ni input{min-height:44px;font-size:16px}
+select{font-size:16px}
+
+</style>
+</head>
+<body>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Side Hustle Tax Estimate &amp; Quarterly Payment Plan</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div><div class="brand-line"></div>
+    <div class="hdr-badge">Side Hustle Taxes &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>Side Hustle<br><em>Tax Calculator</em></h1>
+    <p>See exactly how much you owe in self-employment tax and income tax on your side hustle &mdash; plus a quarterly payment plan so you never get hit with penalties.</p>
+  </div>
+  <div class="pw"><div class="pl">Step <span id="sn">1</span> of 3</div><div class="pb"><div class="ps a" id="p1"></div><div class="ps" id="p2"></div><div class="ps" id="p3"></div></div></div>
+
+  <!-- Step 1: Day Job -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Your Day Job</div><div class="cs">W-2 employment income and withholding</div></div>
+    <div class="ci">If you have a W-2 job alongside your side hustle, enter it here. We need this to calculate your correct tax bracket and SE tax.</div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
+    <div class="f"><label>W-2 Gross Wages (annual) <span class="it" tabindex="0">?<span class="tt">Your total gross wages from your employer before any deductions. Box 1 on your W-2, or your annual salary.</span></span></label><div class="di"><input type="text" id="w2wages" placeholder="0" inputmode="numeric"></div><div class="ht">Enter $0 if your side hustle is your only income.</div></div>
+    <div class="f"><label>Federal tax withheld from W-2 (annual) <span class="it" tabindex="0">?<span class="tt">Total federal income tax your employer withholds for the year. Check your latest paystub's YTD federal tax and project to year-end, or Box 2 on last year's W-2 as an estimate.</span></span></label><div class="di"><input type="text" id="w2with" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Number of qualifying children under 17</label><div class="ni"><input type="text" id="kids" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 2: Side Hustle -->
+  <div class="step" id="s2"><div class="card"><div class="ch"><div class="ct">Step 2: Your Side Hustle</div><div class="cs">Self-employment income and expenses</div></div>
+    <div class="ci">Enter your total side hustle numbers for 2025. If you have multiple side hustles, combine them.</div>
+    <div class="f"><label>Side hustle gross revenue (annual) <span class="it" tabindex="0">?<span class="tt">Total money received from all self-employment: freelancing, gig work, Etsy sales, consulting, 1099 income, etc. Before expenses.</span></span></label><div class="di"><input type="text" id="shRev" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Side hustle business expenses (annual) <span class="it" tabindex="0">?<span class="tt">Deductible business expenses: supplies, software, home office, internet portion, equipment, advertising, etc. Do NOT include mileage or home office here if you enter them below.</span></span></label><div class="di"><input type="text" id="shExp" placeholder="0" inputmode="numeric"></div></div>
+    <div class="alt-label">Common Expenses Quick-Add (optional)</div>
+    <div class="f"><label>Business miles driven in 2025</label><div class="ni"><input type="text" id="miles" placeholder="0" inputmode="numeric"></div><div class="ht">Standard mileage rate: $0.70/mile for 2025. We'll calculate the deduction.</div></div>
+    <div class="f"><label>Home office square footage <span class="it" tabindex="0">?<span class="tt">The area used regularly and exclusively for business. Simplified method: $5/sq ft, maximum 300 sq ft = up to $1,500 deduction.</span></span></label><div class="ni"><input type="text" id="hoSqft" placeholder="0" inputmode="numeric"></div><div class="ht">Enter the square footage of your dedicated office space. Max 300 sq ft for simplified method.</div></div>
+    <div class="br"><button class="btn bk" data-btn-id="btn2">&larr; Back</button><button class="btn bp" data-btn-id="btn3">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 3: Payment Preferences -->
+  <div class="step" id="s3"><div class="card"><div class="ch"><div class="ct">Step 3: Payment Preferences</div></div>
+    <div class="ci">How would you prefer to handle your tax payments?</div>
+    <div class="f"><label>How do you want to pay?</label><select id="pmSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="quarterly" selected>Quarterly estimated payments</option><option value="w4">Adjust my W-4 withholding</option></select><div class="ht">Quarterly: Make 4 payments directly to the IRS. W-4: Have your employer withhold extra each paycheck to cover side hustle taxes.</div></div>
+    <div class="f" id="payFreqRow"><label>How often are you paid at your W-2 job?</label><select id="pfSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="26" selected>Biweekly (26/yr)</option><option value="24">Semimonthly (24/yr)</option><option value="52">Weekly (52/yr)</option><option value="12">Monthly (12/yr)</option></select></div>
+    <div class="br"><button class="btn bk" data-btn-id="btn4">&larr; Back</button><button class="btn bp" data-btn-id="btn5">Calculate My Taxes &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This estimate is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Self-employment tax calculations involve many variables. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+function pi(i){return parseInt($(i).value.replace(/[^0-9]/g,''))||0}
+document.querySelectorAll('.di input').forEach(i=>{i.addEventListener('blur',function(){let n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+
+// Show/hide pay frequency
+document.getElementById('pmSelect').addEventListener('change',function(){$('payFreqRow').style.display=this.value==='w4'?'block':'none'});
+$('payFreqRow').style.display='none';
+
+let cs=1;
+function go(n){
+  if(n>1&&cs===1){
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(!document.getElementById('flSelect').value){em.textContent='\u26a0 Please select a filing status above.';em.style.display='block';return}
+    em.style.display='none'}
+  if(n>2&&cs===2){
+    var em2=document.getElementById('err2');if(!em2){em2=document.createElement('div');em2.id='err2';em2.className='err-msg';document.querySelector('#s2 .br').before(em2)}
+    if(pv('shRev')<=0){em2.textContent='\u26a0 Please enter your side hustle revenue above.';em2.style.display='block';return}
+    em2.style.display='none'}
+  $('s'+cs).classList.remove('active');$(n<=3?'s'+n:'sr').classList.add('active');
+  for(let i=1;i<=3;i++){let e=$('p'+i);e.className='ps';if(i<n)e.classList.add('d');else if(i===n)e.classList.add('a')}
+  $('sn').textContent=n;cs=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* 2025 Tax Brackets */
+const bk={
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+function calcTax(ti,f){let t=0,p=0;for(const[l,r]of bk[f]){let a=Math.min(ti,l)-p;if(a<=0)break;t+=a*r;p=l}return t}
+function margRate(ti,f){for(const[l,r]of bk[f])if(ti<=l)return r;return .37}
+
+function calc(){
+  const f=document.getElementById('flSelect').value;
+  const w2=pv('w2wages'), w2wh=pv('w2with'), kids=pi('kids');
+  const shRev=pv('shRev'), shExpInput=pv('shExp');
+
+  // Mileage deduction
+  const miles=pv('miles');
+  const mileageDed=miles*0.70;
+
+  // Home office
+  const hoSqft=pv('hoSqft');
+  const simplifiedHO=Math.min(hoSqft,300)*5;
+  const hoDeduction=simplifiedHO;
+
+  // Total expenses
+  const totalExp=shExpInput+mileageDed+hoDeduction;
+  const netProfit=Math.max(shRev-totalExp,0);
+
+  /* === SELF-EMPLOYMENT TAX === */
+  // SE taxable = 92.35% of net profit
+  const seTaxable=netProfit*0.9235;
+  const ssWageBase=176100;
+  // SS portion: 12.4% on income up to wage base (reduced by W-2 wages already taxed)
+  const ssRemaining=Math.max(ssWageBase-w2,0);
+  const ssSETaxable=Math.min(seTaxable,ssRemaining);
+  const ssTax=ssSETaxable*0.124;
+  // Medicare: 2.9% on all SE income
+  const medTax=seTaxable*0.029;
+  // Additional Medicare: 0.9% on combined earnings over threshold
+  const addMedThresh=f==='mfj'?250000:f==='mfs'?125000:200000;
+  const combinedEarnings=w2+seTaxable;
+  const addMedTax=combinedEarnings>addMedThresh?Math.min(seTaxable,combinedEarnings-addMedThresh)*0.009:0;
+  const totalSE=ssTax+medTax+addMedTax;
+  // Deductible half of SE tax
+  const seDeduction=totalSE/2;
+
+  /* === FEDERAL INCOME TAX === */
+  const stdDed={single:15750,mfj:31500,mfs:15750,hoh:23625}[f];
+  const agi=w2+netProfit-seDeduction;
+  const taxableIncome=Math.max(agi-stdDed,0);
+  const totalFedTax=calcTax(taxableIncome,f);
+  const ctc=Math.min(kids*2200,totalFedTax); // CTC limited to tax liability (simplified)
+  const fedTaxAfterCredits=Math.max(totalFedTax-ctc,0);
+
+  /* === TOTAL TAX & GAP === */
+  const totalTaxLiability=fedTaxAfterCredits+totalSE;
+  const alreadyPaid=w2wh;
+  const taxGap=Math.max(totalTaxLiability-alreadyPaid,0);
+  const needsQuarterly=taxGap>1000;
+  const margR=margRate(taxableIncome,f);
+  const effectiveRate=netProfit>0?Math.max(((totalSE+(fedTaxAfterCredits-calcTax(Math.max(w2-stdDed,0),f)))/netProfit*100),0):0;
+
+  // Payment method
+  const payMethod=document.getElementById('pmSelect').value;
+  const payFreqEl=document.getElementById('pfSelect');
+  const payFreq=parseInt(payFreqEl.value)||26;
+
+  // Quarterly amounts
+  const qAmt=taxGap/4;
+  // Due dates for 2025
+  const qDates=[
+    {q:'Q1',period:'Jan 1 \u2013 Mar 31',due:'Apr 15, 2025',past:true},
+    {q:'Q2',period:'Apr 1 \u2013 May 31',due:'Jun 16, 2025',past:true},
+    {q:'Q3',period:'Jun 1 \u2013 Aug 31',due:'Sep 15, 2025',past:true},
+    {q:'Q4',period:'Sep 1 \u2013 Dec 31',due:'Jan 15, 2026',past:false}
+  ];
+  // Determine which quarters are past (rough check based on current date)
+  const now=new Date();
+  const cutoffs=[new Date(2025,3,15),new Date(2025,5,16),new Date(2025,8,15),new Date(2026,0,15)];
+  qDates.forEach((q,i)=>{q.past=now>cutoffs[i]});
+  const nextQ=qDates.find(q=>!q.past);
+
+  // W-4 extra per paycheck
+  const remainingPaychecks=Math.max(Math.round(payFreq*(1-(now.getMonth()/12))),1);
+  const w4Extra=Math.ceil(taxGap/remainingPaychecks);
+
+  // Monthly savings target
+  const monthlySave=Math.ceil(taxGap/12);
+  const savingsRate=shRev>0?(monthlySave*12/shRev*100).toFixed(0):0;
+
+  /* === BUILD HTML === */
+  let h=`<div class="rh"><h2>Your Side Hustle Tax Summary</h2><div class="big">$${fw(Math.round(totalTaxLiability))}</div><div class="sub">total estimated tax on $${fw(netProfit)} net side hustle profit</div><div class="sv-ln"></div></div>`;
+
+  // Tax gap alert
+  if(needsQuarterly){
+    h+=`<div class="nb am"><strong>You likely need to make estimated payments.</strong> Your tax gap of $${fw(Math.round(taxGap))} exceeds $1,000, which means the IRS expects quarterly payments. Without them, you may face an underpayment penalty.</div>`;
+  } else if(taxGap>0){
+    h+=`<div class="nb grn"><strong>Your tax gap is under $1,000.</strong> You likely won't owe an underpayment penalty. Your W-2 withholding covers most of your liability. You'll settle the remaining $${fw(Math.round(taxGap))} when you file.</div>`;
+  } else {
+    h+=`<div class="nb grn"><strong>Your W-2 withholding covers your total tax liability.</strong> Based on these numbers, you may even receive a refund of approximately $${fw(Math.abs(Math.round(taxGap)))}.</div>`;
+  }
+
+  // SE Tax breakdown
+  h+=`<div class="bd"><div class="bh">Self-Employment Tax (15.3%)</div>
+    <div class="bw"><div class="bl">Side hustle gross revenue</div><div class="bv">$${fw(shRev)}</div></div>
+    <div class="bw"><div class="bl">Business expenses</div><div class="bv">-$${fw(totalExp)}</div></div>`;
+  if(mileageDed>0) h+=`<div class="bw note-row" style="padding-left:32px"><div class="sub2">Includes mileage: ${fw(miles)} mi &times; $0.70 = $${fw(mileageDed)}</div></div>`;
+  if(hoDeduction>0) h+=`<div class="bw note-row" style="padding-left:32px"><div class="sub2">Includes home office (simplified): ${fw(Math.min(hoSqft,300))} sq ft &times; $5 = $${fw(hoDeduction)}</div></div>`;
+  h+=`<div class="bw tot"><div class="bl">Net Profit (Schedule C)</div><div class="bv">$${fw(netProfit)}</div></div>
+    <div class="bw"><div class="bl">SE taxable base (92.35% of net profit)</div><div class="bv">$${fw(Math.round(seTaxable))}</div></div>
+    <div class="bw"><div class="bl">Social Security tax (12.4%)</div><div class="bv">$${fm(ssTax)}</div></div>`;
+  if(ssRemaining<seTaxable) h+=`<div class="bw note-row" style="padding-left:32px"><div class="sub2">Only $${fw(ssRemaining)} subject to SS (W-2 wages used $${fw(w2)} of $${fw(ssWageBase)} base)</div></div>`;
+  h+=`<div class="bw"><div class="bl">Medicare tax (2.9%)</div><div class="bv">$${fm(medTax)}</div></div>`;
+  if(addMedTax>0) h+=`<div class="bw"><div class="bl">Additional Medicare (0.9% over $${fw(addMedThresh)})</div><div class="bv">$${fm(addMedTax)}</div></div>`;
+  h+=`<div class="bw tot"><div class="bl">Total Self-Employment Tax</div><div class="bv">$${fm(totalSE)}</div></div></div>`;
+
+  // Income tax breakdown
+  h+=`<div class="bd"><div class="bh">Federal Income Tax</div>
+    <div class="bw"><div class="bl">W-2 wages</div><div class="bv">$${fw(w2)}</div></div>
+    <div class="bw"><div class="bl">Net side hustle profit</div><div class="bv">+$${fw(netProfit)}</div></div>
+    <div class="bw"><div class="bl">Deductible half of SE tax</div><div class="bv">-$${fw(Math.round(seDeduction))}</div></div>
+    <div class="bw"><div class="bl">Adjusted Gross Income</div><div class="bv">$${fw(Math.round(agi))}</div></div>
+    <div class="bw"><div class="bl">Standard deduction</div><div class="bv">-$${fw(stdDed)}</div></div>
+    <div class="bw"><div class="bl">Taxable income</div><div class="bv">$${fw(Math.round(taxableIncome))}</div></div>
+    <div class="bw"><div class="bl">Federal income tax</div><div class="bv">$${fm(totalFedTax)}</div></div>`;
+  if(ctc>0) h+=`<div class="bw"><div class="bl">Child Tax Credit (${kids} child${kids>1?'ren':''} &times; $2,200)</div><div class="bv">-$${fw(ctc)}</div></div>`;
+  h+=`<div class="bw tot"><div class="bl">Federal Tax After Credits</div><div class="bv">$${fm(fedTaxAfterCredits)}</div></div></div>`;
+
+  // Total & Gap
+  h+=`<div class="bd"><div class="bh">What You Owe vs. What You've Paid</div>
+    <div class="bw"><div class="bl">Federal income tax</div><div class="bv">$${fm(fedTaxAfterCredits)}</div></div>
+    <div class="bw"><div class="bl">Self-employment tax</div><div class="bv">$${fm(totalSE)}</div></div>
+    <div class="bw tot"><div class="bl">Total Tax Liability</div><div class="bv">$${fm(totalTaxLiability)}</div></div>
+    <div class="bw"><div class="bl">W-2 withholding already paid</div><div class="bv">-$${fw(w2wh)}</div></div>
+    <div class="bw ${taxGap>0?'warn':'tot2'}"><div class="bl">${taxGap>0?'Tax Gap (amount still owed)':'Estimated Refund'}</div><div class="bv">$${fw(Math.abs(Math.round(taxGap)))}</div></div></div>`;
+
+  // Effective rate callout
+  if(netProfit>0){
+    h+=`<div class="nb blu"><strong>Your side hustle effective tax rate: ${effectiveRate.toFixed(1)}%</strong> &mdash; For every dollar of net profit, approximately $${(effectiveRate/100).toFixed(2)} goes to federal income tax + self-employment tax. Your marginal rate is ${(margR*100).toFixed(0)}%.</div>`;
+  }
+
+  // Payment plan
+  if(taxGap>0){
+    if(payMethod==='quarterly'){
+      h+=`<div class="bd"><div class="bh">Quarterly Estimated Payment Plan</div>
+        <div class="bw"><div class="bl">Annual tax gap to cover</div><div class="bv">$${fw(Math.round(taxGap))}</div></div>
+        <div class="bw tot"><div class="bl">Each quarterly payment (Form 1040-ES)</div><div class="bv">$${fw(Math.ceil(qAmt))}</div></div></div>`;
+      h+=`<div class="qgrid">`;
+      qDates.forEach(q=>{
+        const isNext=nextQ&&q.q===nextQ.q;
+        h+=`<div class="qcard ${q.past?'past':''} ${isNext?'next':''}"><div class="ql">${q.q}${q.past?' (past)':isNext?' (next)':''}</div><div class="qa">$${fw(Math.ceil(qAmt))}</div><div class="qd">Due: ${q.due}</div><div class="qd" style="font-size:10px;color:var(--text-lt)">${q.period}</div></div>`;
+      });
+      h+=`</div>`;
+      if(qDates.filter(q=>q.past).length>0){
+        const pastCount=qDates.filter(q=>q.past).length;
+        const remaining=4-pastCount;
+        const catchUp=remaining>0?Math.ceil(taxGap/remaining):taxGap;
+        h+=`<div class="nb am"><strong>Catch-up note:</strong> ${pastCount} quarter${pastCount>1?'s have':' has'} already passed. To catch up, you'd need to pay approximately $${fw(catchUp)} per remaining quarter${remaining>1?` (${remaining} left)`:''}, or make one larger payment now. Pay via <strong>IRS Direct Pay</strong> (irs.gov/payments) &mdash; no account needed.</div>`;
+      }
+    } else {
+      h+=`<div class="bd"><div class="bh">W-4 Withholding Adjustment</div>
+        <div class="bw"><div class="bl">Tax gap to cover</div><div class="bv">$${fw(Math.round(taxGap))}</div></div>
+        <div class="bw"><div class="bl">Remaining paychecks this year (est.)</div><div class="bv">${remainingPaychecks}</div></div>
+        <div class="bw tot"><div class="bl">Extra withholding per paycheck</div><div class="bv">$${fw(w4Extra)}</div></div></div>`;
+      h+=`<div class="nb grn"><strong>How to do this:</strong> Submit a new W-4 to your employer. On Line 4(c), enter <strong>$${fw(w4Extra)}</strong> as additional withholding per paycheck. This covers your side hustle taxes through your regular paycheck &mdash; no quarterly payments needed.</div>`;
+    }
+
+    // Monthly savings
+    h+=`<div class="bd"><div class="bh">Monthly Tax Savings Target</div>
+      <div class="bw"><div class="bl">Set aside each month</div><div class="bv">$${fw(monthlySave)}</div></div>
+      <div class="bw"><div class="bl">As a % of gross revenue</div><div class="bv">${savingsRate}%</div></div></div>`;
+    h+=`<div class="nb grn"><strong>Tax savings tip:</strong> Open a separate savings account for taxes. Transfer $${fw(monthlySave)} on the 1st of each month. This ensures you always have funds ready for quarterly payments or your year-end balance.</div>`;
+  }
+
+  h+=`<div class="ra"><button class="btn bk" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>`;
+  $('rc').innerHTML=h;
+  $('s'+cs).classList.remove('active');$('sr').classList.add('active');
+  for(let i=1;i<=3;i++)$('p'+i).className='ps d';
+  $('sn').textContent='\u2713';cs=4;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');cs=1;
+  for(let i=1;i<=3;i++){let e=$('p'+i);e.className='ps';if(i===1)e.classList.add('a')}
+  $('sn').textContent='1';
+  document.querySelectorAll('.di input, .ni input').forEach(i=>i.value='');
+  var flSel=document.getElementById('flSelect');if(flSel)flSel.selectedIndex=0;
+  var pmSel=document.getElementById('pmSelect');if(pmSel)pmSel.selectedIndex=0;$('payFreqRow').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+
+
+
+<script>
+// Wire up all buttons via addEventListener (iOS Files WebView compatible)
+document.addEventListener("DOMContentLoaded", function(){
+  var b_btn1=document.querySelector('[data-btn-id="btn1"]');
+  if(b_btn1)b_btn1.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b_btn2=document.querySelector('[data-btn-id="btn2"]');
+  if(b_btn2)b_btn2.addEventListener("click",function(e){e.preventDefault();go(1)});
+  var b_btn3=document.querySelector('[data-btn-id="btn3"]');
+  if(b_btn3)b_btn3.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b_btn4=document.querySelector('[data-btn-id="btn4"]');
+  if(b_btn4)b_btn4.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b_btn5=document.querySelector('[data-btn-id="btn5"]');
+  if(b_btn5)b_btn5.addEventListener("click",function(e){e.preventDefault();calc()});
+  var b_btn6=document.querySelector('[data-btn-id="btn6"]');
+  if(b_btn6)b_btn6.addEventListener("click",function(e){e.preventDefault();window.print()});
+  var b_btn7=document.querySelector('[data-btn-id="btn7"]');
+  if(b_btn7)b_btn7.addEventListener("click",function(e){e.preventDefault();startOver()});
+});
+</script>
+<script>
+// Event delegation for dynamically created buttons
+document.addEventListener("click", function(e){
+  var t = e.target;
+  if(t.tagName==="BUTTON" || t.closest("button")){
+    t = t.closest("button") || t;
+    var action = t.getAttribute("data-action");
+    if(action==="print") window.print();
+    if(action==="startOver") startOver();
+  }
+});
+</script>
+</body>
+</html>

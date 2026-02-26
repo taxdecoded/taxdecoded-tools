@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxDecoded — 2025 Tax Calculators</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--bdr:#e4ddd0;--bdr-lt:#eee8db}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+.ctr{max-width:700px;margin:0 auto;padding:40px 20px 60px;text-align:center}
+.brand{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px}
+.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:40px;height:3px;background:var(--gold);margin:0 auto 24px;border-radius:2px}
+h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.2}
+h1 em{color:var(--gold-dark);font-style:normal}
+.sub{color:var(--text-sec);font-size:15px;line-height:1.6;max-width:500px;margin:0 auto 40px}
+.tools{display:flex;flex-direction:column;gap:16px;max-width:520px;margin:0 auto}
+.tool{background:var(--white);border:1.5px solid var(--bdr-lt);border-radius:14px;padding:28px 24px;text-align:left;text-decoration:none;color:inherit;transition:all .2s;box-shadow:0 2px 12px rgba(26,39,68,.05);display:block}
+.tool:hover{border-color:var(--gold);box-shadow:0 4px 24px rgba(26,39,68,.1);transform:translateY(-2px)}
+.tool h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.tool p{color:var(--text-sec);font-size:13px;line-height:1.5}
+.tool .badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:12px;margin-bottom:10px}
+.footer{margin-top:48px;font-size:12px;color:var(--text-sec);line-height:1.6}
+.footer strong{color:var(--gold-dark)}
+@media(max-width:480px){h1{font-size:26px}.tool{padding:22px 18px}}
+</style>
+</head>
+<body>
+<div class="ctr">
+  <div class="brand"><span>Tax</span><span>Decoded</span></div>
+  <div class="brand-line"></div>
+  <h1>2025 Tax <em>Calculators</em></h1>
+  <p class="sub">Free interactive tools updated for the One Big Beautiful Bill Act. Built by a licensed CPA.</p>
+  
+  <div class="tools">
+    <a href="/itemize/" class="tool">
+      <div class="badge">Standard vs. Itemized</div>
+      <h2>Should I Itemize?</h2>
+      <p>Compare your itemized deductions against the standard deduction — including the new $40,000 SALT cap and enhanced senior deduction.</p>
+    </a>
+    <a href="/obbba/" class="tool">
+      <div class="badge">6 New Deductions</div>
+      <h2>OBBBA Deduction Qualifier</h2>
+      <p>Find out which of the 6 new OBBBA deductions you qualify for — tips, overtime, auto loan interest, senior bonus, SALT increase, and child tax credit.</p>
+    </a>
+    <a href="/sidehustle/" class="tool">
+      <div class="badge">Self-Employment</div>
+      <h2>Side Hustle Tax Calculator</h2>
+      <p>Calculate your SE tax + income tax on side hustle income, with a quarterly payment plan or W-4 adjustment.</p>
+    </a>
+  </div>
+  
+  <div class="footer">
+    <strong>TaxDecoded</strong> · Built by a Licensed CPA<br>
+    Updated for Tax Year 2025 · OBBBA Compliant<br><br>
+    These tools are for educational purposes only and do not constitute tax advice.
+  </div>
+</div>
+</body>
+</html>
