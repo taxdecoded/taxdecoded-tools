@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rental Property Tax Calculator | TaxDecoded — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:460px;margin:8px auto 0}
+.pw{margin-bottom:24px}.pw .pl{font-size:12px;color:var(--text-lt);margin-bottom:8px;font-weight:500}
+.pb{display:flex;gap:5px}.ps{flex:1;height:4px;border-radius:2px;background:var(--bdr);transition:background .4s}.ps.a{background:var(--gold)}.ps.d{background:var(--navy)}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.ni input{width:100%;padding:11px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.ni input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.ni input::placeholder{color:var(--text-lt)}
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.tip .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.tip:hover .tt,.tip:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bs{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bs:hover{border-color:var(--gold)}
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;border:2px solid;position:relative;overflow:hidden}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;border-radius:50%;opacity:.06;background:var(--gold)}
+.rh.r-profit{background:linear-gradient(145deg,#fef9ee,#fdf0d4);border-color:#e8d48c}
+.rh.r-loss{background:linear-gradient(145deg,#edf8f2,#daf1e3);border-color:#aeddc6}
+.rh>*{position:relative;z-index:1}
+.rec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+.rh.r-profit .rec-label{background:rgba(180,140,30,.12);color:#8a6d1b}
+.rh.r-loss .rec-label{background:rgba(45,133,94,.12);color:var(--green-dk)}
+.rh h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.sav{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sav .sv-a{font-size:42px;font-weight:700;font-family:'Playfair Display',serif;color:var(--navy);line-height:1.1}
+.sav .sv-l{font-size:13px;color:var(--text-sec);font-weight:500;margin-top:4px}
+.sav .sv-ln{width:48px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:1px}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .sub{font-size:11px;color:var(--text-lt)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fdf6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}
+  .hdr,.pw,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+  .ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0;border-radius:2px}
+  .ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+  .ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;margin-bottom:4px}
+  .pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}
+  .pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}
+  .pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0;border-radius:1px}
+  .rh{break-inside:avoid;margin-top:24px;box-shadow:none!important;border:2px solid var(--bdr)!important}.rh::before,.rh::after{display:none}
+  .bd{box-shadow:none!important;break-inside:avoid;border:1px solid var(--bdr)!important}
+  .nb{break-inside:avoid}.card{box-shadow:none!important}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:28px}.sav .sv-a{font-size:32px}.rh h2{font-size:22px}}
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input,.ni input{min-height:44px;font-size:16px}
+select{font-size:16px}
+</style>
+</head>
+<body>
+<div id="accessGate" style="position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif">
+  <div style="text-align:center;max-width:380px;padding:24px">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px"><span style="color:var(--navy)">Tax</span><span style="color:var(--gold)">Decoded</span></div>
+    <div style="width:40px;height:3px;background:var(--gold);margin:0 auto 24px;border-radius:2px"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px">Enter Access Code</h2>
+    <p style="color:var(--text-sec);font-size:14px;margin-bottom:24px;line-height:1.5">This calculator requires an access code to continue.</p>
+    <input id="gateInput" type="text" placeholder="Access Code" autocomplete="off" style="width:100%;padding:14px 16px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--bdr);border-radius:10px;text-align:center;letter-spacing:.15em;text-transform:uppercase;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--bdr)'">
+    <div id="gateError" style="color:var(--red);font-size:13px;margin-top:8px;display:none">Invalid access code. Please try again.</div>
+    <button id="gateBtn" style="width:100%;margin-top:16px;padding:14px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--gold-light);border:none;border-radius:10px;cursor:pointer;transition:background .2s" onmouseover="this.style.background='#243352'" onmouseout="this.style.background='var(--navy)'">Unlock Calculator</button>
+    <a href="/" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--text-sec);text-decoration:none">&larr; Back to Tools</a>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE='RENTAL2025',KEY='td_access_rental';
+  if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
+  var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
+  function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
+  btn.addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+})();
+</script>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Rental Property Tax Analysis</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div>
+    <div class="brand-line"></div>
+    <div class="hdr-badge">Rental Property &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>Your Rental,<br><em>Tax Decoded.</em></h1>
+    <p>Calculate your net rental income, depreciation deduction, passive loss limits, and tax impact &mdash; in under 3 minutes.</p>
+  </div>
+  <div class="pw"><div class="pl">Step <span id="sn">1</span> of 4</div><div class="pb"><div class="ps a" id="p1"></div><div class="ps" id="p2"></div><div class="ps" id="p3"></div><div class="ps" id="p4"></div></div></div>
+
+  <!-- Step 1: Property & Income -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Property &amp; Rental Income</div></div><div class="ci">Enter your property details and <strong>annual rental income</strong>.</div>
+    <div class="f"><label>Annual gross rental income <span class="tip" tabindex="0">?<span class="tt">Total rent collected for the year before any expenses.</span></span></label><div class="di"><input type="text" id="rentInc" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Property purchase price <span class="tip" tabindex="0">?<span class="tt">Original purchase price. Used to calculate depreciation. Land is not depreciable &mdash; we'll separate it in the next field.</span></span></label><div class="di"><input type="text" id="purchPrice" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Land value (typically 15-25% of purchase price) <span class="tip" tabindex="0">?<span class="tt">Check your property tax assessment for the land vs. building breakdown. If unsure, use 20% of purchase price.</span></span></label><div class="di"><input type="text" id="landVal" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Year property was placed in service</label><div class="ni"><input type="text" id="yearPlaced" placeholder="e.g. 2020" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 2: Expenses -->
+  <div class="step" id="s2"><div class="card"><div class="ch"><div class="ct">Step 2: Rental Expenses</div><div class="cs">All deductible operating expenses for the year</div></div><div class="ci">Enter your <strong>annual</strong> expenses. All of these are deductible against rental income.</div>
+    <div class="f"><label>Mortgage interest</label><div class="di"><input type="text" id="mortInt" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Property taxes</label><div class="di"><input type="text" id="propTax" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Insurance</label><div class="di"><input type="text" id="insurance" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Repairs &amp; maintenance</label><div class="di"><input type="text" id="repairs" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Property management fees</label><div class="di"><input type="text" id="mgmt" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>HOA / condo fees</label><div class="di"><input type="text" id="hoa" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Utilities (if landlord pays)</label><div class="di"><input type="text" id="utilities" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Other expenses (advertising, legal, travel, etc.)</label><div class="di"><input type="text" id="otherExp" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn2">&larr; Back</button><button class="btn bp" data-btn-id="btn3">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 3: Your Tax Situation -->
+  <div class="step" id="s3"><div class="card"><div class="ch"><div class="ct">Step 3: Your Tax Situation</div><div class="cs">Determines passive loss limits and tax rate</div></div><div class="ci">This determines whether you can deduct rental losses against other income (the <strong>$25,000 special allowance</strong>) and your marginal tax rate.</div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
+    <div class="f"><label>Your Modified AGI (excluding rental) <span class="tip" tabindex="0">?<span class="tt">Your AGI from all sources EXCEPT this rental property. Used for the passive loss phaseout ($100K-$150K).</span></span></label><div class="di"><input type="text" id="magi" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="isREP" style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">I qualify as a Real Estate Professional (750+ hours)</label><div class="ht">If you materially participate and spend 750+ hours in real estate activities, passive loss limits don't apply to you.</div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn4">&larr; Back</button><button class="btn bp" data-btn-id="btn5">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 4: Additional -->
+  <div class="step" id="s4"><div class="card"><div class="ch"><div class="ct">Step 4: Additional Details</div></div>
+    <div class="f"><label>Days property was rented</label><div class="ni"><input type="text" id="daysRented" placeholder="365" inputmode="numeric" value="365"></div></div>
+    <div class="f"><label>Days of personal use <span class="tip" tabindex="0">?<span class="tt">If personal use exceeds the greater of 14 days or 10% of rental days, the property is treated as a personal residence and deductions are limited.</span></span></label><div class="ni"><input type="text" id="daysPersonal" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn6">&larr; Back</button><button class="btn bp" data-btn-id="btn7">See My Results &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This analysis is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance specific to your situation.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Tax laws are complex and individual circumstances vary. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+document.querySelectorAll('.di input, .ni input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+
+var cs=1;
+function go(n){
+  if(n>1&&cs===1){
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(pv('rentInc')<=0){em.textContent='\u26a0 Please enter your annual rental income.';em.style.display='block';return}
+    var yp=parseInt($('yearPlaced').value);
+    if(!yp||yp<1900||yp>2025){em.textContent='\u26a0 Please enter a valid year placed in service (1900\u20132025).';em.style.display='block';return}
+    em.style.display='none'}
+  if(n>3&&cs===3){
+    var em3=document.getElementById('err3');if(!em3){em3=document.createElement('div');em3.id='err3';em3.className='err-msg';document.querySelector('#s3 .br').before(em3)}
+    if(!$('flSelect').value){em3.textContent='\u26a0 Please select a filing status.';em3.style.display='block';return}
+    em3.style.display='none'}
+  $(cs<=4?'s'+cs:'sr').classList.remove('active');$(n<=4?'s'+n:'sr').classList.add('active');
+  for(var i=1;i<=4;i++){var e=$('p'+i);e.className='ps';if(i<n)e.classList.add('d');else if(i===n)e.classList.add('a')}
+  $('sn').textContent=Math.min(n,4);cs=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Tax brackets */
+var bk={
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+function margRate(ti,f){for(var j=0;j<bk[f].length;j++)if(ti<=bk[f][j][0])return bk[f][j][1];return .37}
+var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+
+function calc(){
+  var f=$('flSelect').value;
+  var fsLabel={single:'Single',mfj:'Married Filing Jointly',mfs:'Married Filing Separately',hoh:'Head of Household'}[f];
+  var rentInc=pv('rentInc');
+  var purchPrice=pv('purchPrice'), landVal=pv('landVal');
+  var yearPlaced=parseInt($('yearPlaced').value)||2025;
+  var magi=pv('magi');
+  var isREP=$('isREP').checked;
+  var daysRented=parseInt($('daysRented').value)||365;
+  var daysPersonal=parseInt($('daysPersonal').value)||0;
+  var totalDays=daysRented+daysPersonal;
+
+  /* Expenses */
+  var mortInt=pv('mortInt'), propTax=pv('propTax'), insurance=pv('insurance');
+  var repairs=pv('repairs'), mgmt=pv('mgmt'), hoa=pv('hoa');
+  var utilities=pv('utilities'), otherExp=pv('otherExp');
+  var totalExpenses=mortInt+propTax+insurance+repairs+mgmt+hoa+utilities+otherExp;
+
+  /* Depreciation: residential = 27.5 years, straight-line, mid-month convention */
+  var depBasis=Math.max(purchPrice-landVal,0);
+  var fullYearDep=depBasis/27.5;
+  yearPlaced=Math.max(1900,Math.min(yearPlaced,2025));
+  var yearsInService=2025-yearPlaced;
+  /* Mid-month convention: first year gets ~half year (assuming mid-year placed in service) */
+  /* Last year (year 28) gets the remaining partial amount */
+  var totalMonths=27.5*12; /* 330 months total recovery */
+  var monthlyDep=depBasis/totalMonths;
+  var firstYearMonths=6.5; /* mid-month convention estimate: placed in service ~June (6.5 months) */
+  var firstYearDep=monthlyDep*firstYearMonths;
+  var lastYearDep=depBasis-(firstYearDep+fullYearDep*26); /* remaining in year 28 */
+  var depreciation=0;
+  if(yearsInService===0) depreciation=firstYearDep;
+  else if(yearsInService>0&&yearsInService<27) depreciation=fullYearDep;
+  else if(yearsInService===27) depreciation=Math.max(lastYearDep,0);
+  else depreciation=0; /* fully depreciated after ~27.5 years */
+
+  /* Rental use ratio (if personal use is significant) */
+  var personalUseLimit=Math.max(14,daysRented*0.10);
+  var isPersonalResidence=daysPersonal>personalUseLimit;
+  var rentalRatio=(totalDays>0&&isPersonalResidence)?(daysRented/totalDays):1;
+
+  /* Apply rental ratio to expenses & depreciation if personal residence */
+  var allowedExpenses=totalExpenses*rentalRatio;
+  var allowedDepreciation=depreciation*rentalRatio;
+
+  /* Net rental income/loss */
+  var netRental=rentInc-allowedExpenses-allowedDepreciation;
+  var isLoss=netRental<0;
+  var absNet=Math.abs(netRental);
+
+  /* Passive Activity Loss Rules */
+  var allowedLoss=0;
+  var suspendedLoss=0;
+  var passiveNote='';
+
+  if(isLoss){
+    if(isREP){
+      allowedLoss=absNet;
+      passiveNote='As a Real Estate Professional, your rental losses are not subject to passive activity limits. Full loss is deductible.';
+    } else {
+      // $25,000 special allowance, phases out $100K-$150K MAGI
+      var maxAllowance=(f==='mfs')?0:25000; // MFS gets $0 unless lived apart
+      if(magi<=100000){
+        allowedLoss=Math.min(absNet,maxAllowance);
+      } else if(magi<150000){
+        var phaseout=(magi-100000)*0.50;
+        var reducedAllowance=Math.max(maxAllowance-phaseout,0);
+        allowedLoss=Math.min(absNet,reducedAllowance);
+      } else {
+        allowedLoss=0;
+      }
+      suspendedLoss=absNet-allowedLoss;
+      if(f==='mfs') passiveNote='MFS filers cannot claim the $25,000 special allowance (unless you lived apart all year). Your rental loss is fully suspended.';
+      else if(magi>150000) passiveNote='Your MAGI exceeds $150,000. The $25,000 special allowance has fully phased out. Your rental loss is suspended until you sell the property or have passive income.';
+      else if(magi>100000) passiveNote='The $25,000 special allowance is reduced because your MAGI is between $100K and $150K. The allowance phases out at $0.50 per $1 of MAGI over $100K.';
+      else passiveNote='You qualify for the $25,000 special allowance to deduct rental losses against ordinary income.';
+    }
+  }
+
+  /* Tax impact */
+  var taxableOther=Math.max(magi-stdDeds[f],0);
+  var mg=margRate(taxableOther,f);
+  var taxSavings=isLoss?(allowedLoss*mg):(netRental*mg);
+
+  /* Cash flow */
+  var cashFlow=rentInc-totalExpenses; // depreciation is non-cash
+
+  /* Results */
+  var rc2=isLoss?'r-loss':'r-profit';
+  var hl=isLoss?'Net Rental Loss':'Net Rental Income';
+  var rlabel=isLoss?'Tax Shelter Benefit':'Taxable Rental Income';
+
+  var h='<div class="rh '+rc2+'">';
+  h+='<div class="rec-label">'+rlabel+'</div>';
+  h+='<h2>'+hl+'</h2>';
+  h+='<div class="sav"><div class="sv-a">'+(isLoss?'($'+fm(absNet)+')':'$'+fm(netRental))+'</div>';
+  if(isLoss) h+='<div class="sv-l">net rental loss &mdash; $'+fm(taxSavings)+' estimated tax savings at your '+Math.round(mg*100)+'% rate</div>';
+  else h+='<div class="sv-l">net taxable rental income &mdash; $'+fm(taxSavings)+' estimated additional tax at your '+Math.round(mg*100)+'% rate</div>';
+  h+='<div class="sv-ln"></div></div></div>';
+
+  /* Notes */
+  if(isPersonalResidence) h+='<div class="nb am"><strong>Personal use limitation:</strong> Your personal use ('+daysPersonal+' days) exceeds the limit ('+Math.round(personalUseLimit)+' days). Expenses and depreciation are prorated to '+Math.round(rentalRatio*100)+'% (rental use ratio).</div>';
+  if(isLoss&&passiveNote) h+='<div class="nb '+(allowedLoss>0?'grn':'am')+'"><strong>Passive Activity Rules:</strong> '+passiveNote+'</div>';
+  if(suspendedLoss>0) h+='<div class="nb blu"><strong>Suspended loss: $'+fw(Math.round(suspendedLoss))+'</strong> &mdash; This loss carries forward and can offset future rental income or be fully deducted when you sell the property in a taxable disposition.</div>';
+
+  /* Income & Expense breakdown */
+  h+='<div class="bd"><div class="bh">Rental Income &amp; Expenses</div>';
+  h+='<div class="bw"><div class="bl">Gross rental income</div><div class="bv">$'+fw(rentInc)+'</div></div>';
+  if(mortInt>0) h+='<div class="bw"><div class="bl">Mortgage interest</div><div class="bv">-$'+fw(Math.round(mortInt*rentalRatio))+'</div></div>';
+  if(propTax>0) h+='<div class="bw"><div class="bl">Property taxes</div><div class="bv">-$'+fw(Math.round(propTax*rentalRatio))+'</div></div>';
+  if(insurance>0) h+='<div class="bw"><div class="bl">Insurance</div><div class="bv">-$'+fw(Math.round(insurance*rentalRatio))+'</div></div>';
+  if(repairs>0) h+='<div class="bw"><div class="bl">Repairs &amp; maintenance</div><div class="bv">-$'+fw(Math.round(repairs*rentalRatio))+'</div></div>';
+  if(mgmt>0) h+='<div class="bw"><div class="bl">Property management</div><div class="bv">-$'+fw(Math.round(mgmt*rentalRatio))+'</div></div>';
+  if(hoa>0) h+='<div class="bw"><div class="bl">HOA / condo fees</div><div class="bv">-$'+fw(Math.round(hoa*rentalRatio))+'</div></div>';
+  if(utilities>0) h+='<div class="bw"><div class="bl">Utilities</div><div class="bv">-$'+fw(Math.round(utilities*rentalRatio))+'</div></div>';
+  if(otherExp>0) h+='<div class="bw"><div class="bl">Other expenses</div><div class="bv">-$'+fw(Math.round(otherExp*rentalRatio))+'</div></div>';
+  h+='<div class="bw"><div class="bl">Total operating expenses</div><div class="bv">-$'+fw(Math.round(allowedExpenses))+'</div></div>';
+  h+='<div class="bw"><div class="bl">Net before depreciation</div><div class="bv">$'+fw(Math.round(rentInc-allowedExpenses))+'</div></div>';
+  h+='<div class="bw"><div class="bl">Depreciation (27.5 yr straight-line)</div><div class="bv">-$'+fw(Math.round(allowedDepreciation))+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">Net Rental Income / (Loss)</div><div class="bv">'+(isLoss?'($'+fw(Math.round(absNet))+')':'$'+fw(Math.round(netRental)))+'</div></div></div>';
+
+  /* Depreciation detail */
+  h+='<div class="bd"><div class="bh">Depreciation Schedule</div>';
+  h+='<div class="bw"><div class="bl">Purchase price</div><div class="bv">$'+fw(purchPrice)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Less: Land value</div><div class="bv">-$'+fw(landVal)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Depreciable basis</div><div class="bv">$'+fw(depBasis)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Annual depreciation (1/27.5)</div><div class="bv">$'+fw(Math.round(fullYearDep))+'</div></div>';
+  h+='<div class="bw"><div class="bl">Year placed in service</div><div class="bv">'+yearPlaced+'</div></div>';
+  var yearsDepreciated=Math.min(yearsInService+1,28); /* +1 because first year counts; 28 tax years total for 27.5-yr recovery */
+  h+='<div class="bw"><div class="bl">Years depreciated</div><div class="bv">'+yearsDepreciated+' of 28</div></div>';
+  var totalDepTaken=0;
+  if(yearsInService<=0) totalDepTaken=firstYearDep;
+  else if(yearsInService<27) totalDepTaken=firstYearDep+(yearsInService*fullYearDep);
+  else totalDepTaken=depBasis;
+  totalDepTaken=Math.min(totalDepTaken,depBasis);
+  h+='<div class="bw"><div class="bl">Accumulated depreciation</div><div class="bv">$'+fw(Math.round(totalDepTaken))+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">Remaining depreciable basis</div><div class="bv">$'+fw(Math.round(Math.max(depBasis-totalDepTaken,0)))+'</div></div></div>';
+
+  /* Cash flow vs tax */
+  h+='<div class="bd"><div class="bh">Cash Flow vs. Tax</div>';
+  h+='<div class="bw"><div class="bl">Cash flow (income minus cash expenses)</div><div class="bv" style="color:'+(cashFlow>=0?'var(--green-dk)':'var(--red)')+'">$'+fm(cashFlow)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Taxable income / (loss)</div><div class="bv">'+(isLoss?'($'+fm(absNet)+')':'$'+fm(netRental))+'</div></div>';
+  h+='<div class="bw"><div class="bl">Depreciation (non-cash deduction)</div><div class="bv">$'+fw(Math.round(allowedDepreciation))+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">'+(isLoss?'Estimated tax savings':'Estimated additional tax')+'</div><div class="bv" style="color:'+(isLoss?'var(--green-dk)':'var(--navy)')+'">$'+fm(taxSavings)+'</div></div></div>';
+
+  h+='<div class="nb blu"><strong>Depreciation recapture:</strong> When you sell the property, depreciation you\'ve claimed ($'+fw(Math.round(totalDepTaken))+' so far) will be "recaptured" and taxed at up to 25%. Factor this into your long-term plan.</div>';
+
+  h+='<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>';
+  $('rc').innerHTML=h;
+  $('s'+cs).classList.remove('active');$('sr').classList.add('active');
+  for(var i=1;i<=4;i++)$('p'+i).className='ps d';
+  $('sn').textContent='\u2713';cs=5;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');cs=1;
+  for(var i=1;i<=4;i++){var e=$('p'+i);e.className='ps';if(i===1)e.classList.add('a')}
+  $('sn').textContent='1';
+  document.querySelectorAll('.di input, .ni input').forEach(function(i){i.value=''});
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(i){i.checked=false});
+  var flSel=$('flSelect');if(flSel)flSel.selectedIndex=0;
+  $('daysRented').value='365';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var b1=document.querySelector('[data-btn-id="btn1"]');if(b1)b1.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b2=document.querySelector('[data-btn-id="btn2"]');if(b2)b2.addEventListener("click",function(e){e.preventDefault();go(1)});
+  var b3=document.querySelector('[data-btn-id="btn3"]');if(b3)b3.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b4=document.querySelector('[data-btn-id="btn4"]');if(b4)b4.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b5=document.querySelector('[data-btn-id="btn5"]');if(b5)b5.addEventListener("click",function(e){e.preventDefault();go(4)});
+  var b6=document.querySelector('[data-btn-id="btn6"]');if(b6)b6.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b7=document.querySelector('[data-btn-id="btn7"]');if(b7)b7.addEventListener("click",function(e){e.preventDefault();calc()});
+});
+document.addEventListener("click", function(e){
+  var t=e.target;if(t.tagName==="BUTTON"||t.closest("button")){t=t.closest("button")||t;var action=t.getAttribute("data-action");if(action==="print")window.print();if(action==="startOver")startOver()}
+});
+</script>
+</body>
+</html>

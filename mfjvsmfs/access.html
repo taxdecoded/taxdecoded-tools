@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaxDecoded — MFJ vs MFS Calculator Access</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: letter; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #f9f5ec; color: #1a2744; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { width: 8.5in; min-height: 11in; margin: 0 auto; background: #f9f5ec; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: .65in 1.2in .5in; position: relative; overflow: hidden; }
+  .page::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #1a2744 0%, #1a2744 60%, #c5a55a 60%, #c5a55a 100%); }
+  .page::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #c5a55a 0%, #c5a55a 40%, #1a2744 40%, #1a2744 100%); }
+  .brand { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; margin-bottom: 4px; }
+  .brand span:first-child { color: #1a2744; } .brand span:last-child { color: #c5a55a; }
+  .brand-line { width: 50px; height: 3px; background: #c5a55a; margin: 0 auto 20px; border-radius: 2px; }
+  .badge { display: inline-block; background: #1a2744; color: #d4bb7a; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: 7px 20px; border-radius: 20px; margin-bottom: 20px; }
+  h1 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #1a2744; line-height: 1.15; margin-bottom: 4px; text-align: center; }
+  h1 em { color: #a88c3e; font-style: normal; }
+  .subtitle { color: #5a6272; font-size: 14px; line-height: 1.5; max-width: 440px; text-align: center; margin-bottom: 28px; }
+  .access-card { background: #fff; border: 1.5px solid #eee8db; border-radius: 16px; padding: 28px 40px; text-align: center; box-shadow: 0 4px 24px rgba(26,39,68,.07); width: 100%; max-width: 460px; margin-bottom: 24px; }
+  .access-card .label { font-size: 12px; font-weight: 600; color: #5a6272; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 12px; }
+  .access-card .url { display: block; font-size: 17px; font-weight: 600; color: #1a2744; margin-bottom: 20px; word-break: break-all; text-decoration: underline; text-decoration-color: #c5a55a; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+  .divider { width: 100%; height: 1px; background: #eee8db; margin: 4px 0 16px; }
+  .access-card .code-label { font-size: 12px; font-weight: 600; color: #5a6272; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+  .access-card .code { font-family: 'DM Sans', monospace; font-size: 28px; font-weight: 700; color: #c5a55a; letter-spacing: .2em; background: #fdf8ee; border: 2px dashed #c5a55a; border-radius: 10px; padding: 12px 22px; display: inline-block; }
+  .instructions { max-width: 420px; text-align: left; margin-bottom: 24px; }
+  .instructions h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: #1a2744; margin-bottom: 8px; }
+  .instructions ol { padding-left: 20px; color: #5a6272; font-size: 13px; line-height: 1.8; }
+  .instructions ol li::marker { color: #c5a55a; font-weight: 700; }
+  .footer { text-align: center; font-size: 11px; color: #8a9099; line-height: 1.6; margin-top: auto; padding-top: 16px; }
+  .footer strong { color: #a88c3e; }
+  @media print { body { background: #f9f5ec; } .page { min-height: 100vh; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brand"><span>Tax</span><span>Decoded</span></div>
+  <div class="brand-line"></div>
+  <div class="badge">Filing Status &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+  <h1>MFJ vs MFS <em>Calculator</em></h1>
+  <p class="subtitle">Your interactive calculator is ready. Use the link and access code below to get started.</p>
+  <div class="access-card">
+    <div class="label">Your Calculator Link</div>
+    <a class="url" href="https://tools.taxdecoded.io/mfjvsmfs/">https://tools.taxdecoded.io/mfjvsmfs/</a>
+    <div class="divider"></div>
+    <div class="code-label">Your Access Code</div>
+    <div class="code">MFJMFS2025</div>
+  </div>
+  <div class="instructions">
+    <h3>How to Use</h3>
+    <ol>
+      <li>Click or type the link above into your browser</li>
+      <li>Enter the access code when prompted</li>
+      <li>Follow the step-by-step prompts to enter your info</li>
+      <li>View your personalized results instantly</li>
+      <li>Use the <strong>Print Results</strong> button to save your analysis</li>
+    </ol>
+  </div>
+  <div class="footer">
+    <strong>TaxDecoded</strong> · Built by a Licensed CPA<br>
+    Updated for Tax Year 2025 · OBBBA Compliant<br><br>
+    This tool is for educational purposes only and does not constitute tax advice.<br>
+    &copy; 2025 TaxDecoded. All rights reserved. Do not share or redistribute.
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Bracket Visualizer | TaxDecoded — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:460px;margin:8px auto 0}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.tip .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.tip:hover .tt,.tip:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bs{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bs:hover{border-color:var(--gold)}
+/* Results hero */
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;border:2px solid #c8d6ea;position:relative;overflow:hidden;background:linear-gradient(145deg,#eef3fa,#dce6f5)}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;border-radius:50%;opacity:.06;background:var(--gold)}
+.rh>*{position:relative;z-index:1}
+.rec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px;background:rgba(26,39,68,.08);color:var(--navy)}
+.rh h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.sav{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sav .sv-a{font-size:42px;font-weight:700;font-family:'Playfair Display',serif;color:var(--navy);line-height:1.1}
+.sav .sv-l{font-size:13px;color:var(--text-sec);font-weight:500;margin-top:4px}
+.sav .sv-ln{width:48px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:1px}
+/* Bracket bar chart */
+.barchart{margin-bottom:24px}
+.bar-row{display:flex;align-items:center;margin-bottom:6px;position:relative}
+.bar-label{width:42px;font-size:12px;font-weight:600;color:var(--text-sec);text-align:right;padding-right:10px;flex-shrink:0}
+.bar-track{flex:1;background:var(--cream-dark);border-radius:6px;height:32px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;transition:width .6s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;min-width:2px}
+.bar-fill span{font-size:10px;font-weight:600;color:#fff;white-space:nowrap;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.bar-row.active .bar-track{box-shadow:0 0 0 2px var(--gold)}
+.bar-row.active .bar-label{color:var(--gold-dark);font-weight:700}
+.bar-row .bar-range{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:10px;color:var(--text-lt);padding-right:8px;pointer-events:none}
+.bar-colors{--b10:#5b8fb9;--b12:#4a7fa8;--b22:#3d6f97;--b24:#2f5f86;--b32:#244f75;--b35:#1a3f64;--b37:#102f53}
+/* Stats grid */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.sc{background:var(--white);border-radius:var(--r);padding:18px 14px;text-align:center;box-shadow:var(--sh-sm);border:1px solid var(--bdr-lt)}
+.sc .scl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-lt);margin-bottom:6px}
+.sc .scv{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy)}
+.sc .scs{font-size:11px;color:var(--text-sec);margin-top:4px}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .sub{font-size:11px;color:var(--text-lt)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.bw.hl{background:#edf8f2}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fdf6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}
+  .hdr,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+  .ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0;border-radius:2px}
+  .ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+  .ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;margin-bottom:4px}
+  .pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}
+  .pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}
+  .pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0;border-radius:1px}
+  .rh{break-inside:avoid;margin-top:24px;box-shadow:none!important;border:2px solid var(--bdr)!important}.rh::before,.rh::after{display:none}
+  .bd{box-shadow:none!important;break-inside:avoid;border:1px solid var(--bdr)!important}
+  .barchart{break-inside:avoid}.sg{break-inside:avoid}
+  .sc{box-shadow:none!important;border:1px solid var(--bdr)!important}
+  .nb{break-inside:avoid}.card{box-shadow:none!important}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:28px}.sg{grid-template-columns:1fr}.sav .sv-a{font-size:32px}.rh h2{font-size:22px}.sc .scv{font-size:18px}}
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input{min-height:44px;font-size:16px}
+select{font-size:16px}
+</style>
+</head>
+<body>
+<div id="accessGate" style="position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif">
+  <div style="text-align:center;max-width:380px;padding:24px">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px"><span style="color:var(--navy)">Tax</span><span style="color:var(--gold)">Decoded</span></div>
+    <div style="width:40px;height:3px;background:var(--gold);margin:0 auto 24px;border-radius:2px"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px">Enter Access Code</h2>
+    <p style="color:var(--text-sec);font-size:14px;margin-bottom:24px;line-height:1.5">This calculator requires an access code to continue.</p>
+    <input id="gateInput" type="text" placeholder="Access Code" autocomplete="off" style="width:100%;padding:14px 16px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--bdr);border-radius:10px;text-align:center;letter-spacing:.15em;text-transform:uppercase;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--bdr)'">
+    <div id="gateError" style="color:var(--red);font-size:13px;margin-top:8px;display:none">Invalid access code. Please try again.</div>
+    <button id="gateBtn" style="width:100%;margin-top:16px;padding:14px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--gold-light);border:none;border-radius:10px;cursor:pointer;transition:background .2s" onmouseover="this.style.background='#243352'" onmouseout="this.style.background='var(--navy)'">Unlock Calculator</button>
+    <a href="/" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--text-sec);text-decoration:none">&larr; Back to Tools</a>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE='BRACKETS2025',KEY='td_access_brackets';
+  if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
+  var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
+  function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
+  btn.addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+})();
+</script>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Tax Bracket Visualizer</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div>
+    <div class="brand-line"></div>
+    <div class="hdr-badge">Tax Brackets &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>See Where Every<br><em>Dollar Gets Taxed.</em></h1>
+    <p>Visualize exactly how the 2025 federal tax brackets apply to your income &mdash; marginal vs. effective rate, dollar by dollar.</p>
+  </div>
+
+  <!-- Input -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Your Tax Profile</div></div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
+    <div class="f"><label>Total gross income (W-2, 1099, all sources)</label><div class="di"><input type="text" id="grossInc" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Above-the-line deductions (retirement contributions, HSA, etc.) <span class="tip" tabindex="0">?<span class="tt">Traditional IRA/401k contributions, HSA contributions, student loan interest, SE tax deduction, etc. These reduce your AGI.</span></span></label><div class="di"><input type="text" id="atlDed" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Itemized deductions (if more than standard) <span class="tip" tabindex="0">?<span class="tt">Only enter if your itemized deductions exceed the standard deduction. Otherwise we'll use the standard deduction automatically.</span></span></label><div class="di"><input type="text" id="itemDed" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Visualize My Brackets &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This analysis is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance specific to your situation.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Tax laws are complex and individual circumstances vary. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+document.querySelectorAll('.di input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+
+/* 2025 Tax Brackets (OBBBA) */
+var bk={
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+var barColors=['#5b8fb9','#4a7fa8','#3d6f97','#2f5f86','#244f75','#1a3f64','#102f53'];
+var rateLabels=['10%','12%','22%','24%','32%','35%','37%'];
+
+function calc(){
+  var f=$('flSelect').value;
+  if(!f)return;
+  var fsLabel={single:'Single',mfj:'Married Filing Jointly',mfs:'Married Filing Separately',hoh:'Head of Household'}[f];
+  var grossInc=pv('grossInc');
+  var atlDed=pv('atlDed');
+  var itemDed=pv('itemDed');
+
+  var agi=Math.max(grossInc-atlDed,0);
+  var stdDed=stdDeds[f];
+  var deduction=itemDed>stdDed?itemDed:stdDed;
+  var usingItemized=itemDed>stdDed;
+  var taxableIncome=Math.max(agi-deduction,0);
+
+  /* Calculate tax per bracket */
+  var brackets=bk[f];
+  var bracketData=[];
+  var prev=0;
+  var totalTax=0;
+  var topBracketIdx=0;
+
+  for(var j=0;j<brackets.length;j++){
+    var ceiling=brackets[j][0];
+    var rate=brackets[j][1];
+    var low=prev;
+    var high=Math.min(taxableIncome,ceiling);
+    var amount=Math.max(high-low,0);
+    var tax=amount*rate;
+    totalTax+=tax;
+    bracketData.push({rate:rate,rateLabel:rateLabels[j],low:low,high:ceiling===Infinity?'∞':ceiling,amount:amount,tax:tax,color:barColors[j]});
+    if(amount>0)topBracketIdx=j;
+    prev=ceiling;
+    if(taxableIncome<=ceiling)break;
+  }
+
+  var effectiveRate=taxableIncome>0?(totalTax/taxableIncome*100):0;
+  var marginalRate=brackets[topBracketIdx][1]*100;
+  var effectiveOnGross=grossInc>0?(totalTax/grossInc*100):0;
+  var takeHome=grossInc-totalTax;
+
+  /* Find the max bracket amount for scaling bars */
+  var maxAmt=0;
+  for(var j=0;j<bracketData.length;j++){if(bracketData[j].amount>maxAmt)maxAmt=bracketData[j].amount}
+
+  /* Build results */
+  var h='<div class="rh">';
+  h+='<div class="rec-label">'+fsLabel+' — Tax Year 2025</div>';
+  h+='<h2>Your Tax Brackets</h2>';
+  h+='<div class="sav"><div class="sv-a">$'+fm(totalTax)+'</div>';
+  h+='<div class="sv-l">total federal income tax on $'+fw(taxableIncome)+' taxable income</div>';
+  h+='<div class="sv-ln"></div></div></div>';
+
+  /* Stats grid */
+  h+='<div class="sg">';
+  h+='<div class="sc"><div class="scl">Marginal Rate</div><div class="scv">'+marginalRate.toFixed(0)+'%</div><div class="scs">your top bracket</div></div>';
+  h+='<div class="sc"><div class="scl">Effective Rate</div><div class="scv">'+effectiveRate.toFixed(1)+'%</div><div class="scs">on taxable income</div></div>';
+  h+='<div class="sc"><div class="scl">True Rate on Gross</div><div class="scv">'+effectiveOnGross.toFixed(1)+'%</div><div class="scs">including deductions</div></div>';
+  h+='<div class="sc"><div class="scl">After-Tax Income</div><div class="scv">$'+fw(Math.round(takeHome))+'</div><div class="scs">gross minus federal tax</div></div>';
+  h+='</div>';
+
+  /* Bar chart visualization */
+  h+='<div class="card"><div class="ch"><div class="ct">Bracket Breakdown</div><div class="cs">How your income flows through each bracket</div></div>';
+  h+='<div class="barchart bar-colors">';
+  for(var j=0;j<bracketData.length;j++){
+    var bd=bracketData[j];
+    if(bd.amount<=0&&j>topBracketIdx)continue;
+    var pct=maxAmt>0?Math.max(bd.amount/maxAmt*100,bd.amount>0?4:0):0;
+    var isActive=j===topBracketIdx&&bd.amount>0;
+    h+='<div class="bar-row'+(isActive?' active':'')+'">';
+    h+='<div class="bar-label">'+bd.rateLabel+'</div>';
+    h+='<div class="bar-track">';
+    h+='<div class="bar-fill" style="width:'+pct+'%;background:'+bd.color+'">'+(bd.amount>0?'<span>$'+fw(Math.round(bd.tax))+'</span>':'')+'</div>';
+    if(bd.amount===0) h+='<div class="bar-range" style="font-size:10px;color:var(--text-lt);left:8px;right:auto">—</div>';
+    h+='</div></div>';
+  }
+  h+='</div></div>';
+
+  /* Key insight */
+  h+='<div class="nb grn"><strong>Your marginal rate is '+marginalRate.toFixed(0)+'%, but you only pay '+effectiveRate.toFixed(1)+'% overall.</strong> That\'s because the tax system is progressive — only the income <em>within</em> each bracket is taxed at that rate. Moving into a higher bracket does NOT mean all your income is taxed at the higher rate.</div>';
+
+  /* Detailed table */
+  h+='<div class="bd"><div class="bh">Bracket-by-Bracket Detail</div>';
+  for(var j=0;j<bracketData.length;j++){
+    var bd=bracketData[j];
+    if(bd.amount<=0&&j>topBracketIdx)continue;
+    var isActive=j===topBracketIdx&&bd.amount>0;
+    h+='<div class="bw'+(isActive?' hl':'')+'">';
+    h+='<div><div class="bl">'+bd.rateLabel+' bracket</div><div class="sub">$'+fw(bd.low)+' &ndash; '+(bd.high==='∞'?'∞':'$'+fw(bd.high))+'</div></div>';
+    h+='<div class="bv">'+(bd.amount>0?'$'+fw(Math.round(bd.amount))+' &times; '+bd.rateLabel+' = $'+fm(bd.tax):'—')+'</div>';
+    h+='</div>';
+  }
+  h+='<div class="bw tot"><div class="bl">Total Federal Income Tax</div><div class="bv">$'+fm(totalTax)+'</div></div></div>';
+
+  /* Income flow */
+  h+='<div class="bd"><div class="bh">Income to Taxable Income</div>';
+  h+='<div class="bw"><div class="bl">Gross income</div><div class="bv">$'+fw(grossInc)+'</div></div>';
+  if(atlDed>0) h+='<div class="bw"><div class="bl">Above-the-line deductions</div><div class="bv">-$'+fw(atlDed)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Adjusted gross income (AGI)</div><div class="bv">$'+fw(agi)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Deduction ('+(usingItemized?'itemized':'standard — '+fsLabel)+')</div><div class="bv">-$'+fw(deduction)+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">Taxable Income</div><div class="bv">$'+fw(taxableIncome)+'</div></div></div>';
+
+  /* What-if: next dollar */
+  if(taxableIncome>0){
+    var nextRate=brackets[topBracketIdx][1]*100;
+    var roomInBracket=brackets[topBracketIdx][0]-taxableIncome;
+    h+='<div class="nb blu"><strong>Next dollar earned:</strong> taxed at '+nextRate.toFixed(0)+'%. ';
+    if(roomInBracket<Infinity) h+='You have $'+fw(Math.round(roomInBracket))+' of room before moving to the '+rateLabels[Math.min(topBracketIdx+1,6)]+' bracket.';
+    h+='</div>';
+  }
+
+  h+='<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>';
+  $('rc').innerHTML=h;
+  $('s1').classList.remove('active');$('sr').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');
+  document.querySelectorAll('.di input').forEach(function(i){i.value=''});
+  $('flSelect').selectedIndex=0;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var b1=document.querySelector('[data-btn-id="btn1"]');if(b1)b1.addEventListener("click",function(e){
+    e.preventDefault();
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(!$('flSelect').value){em.textContent='\u26a0 Please select a filing status.';em.style.display='block';return}
+    if(pv('grossInc')<=0){em.textContent='\u26a0 Please enter your gross income.';em.style.display='block';return}
+    em.style.display='none';calc();
+  });
+});
+document.addEventListener("click", function(e){
+  var t=e.target;if(t.tagName==="BUTTON"||t.closest("button")){t=t.closest("button")||t;var action=t.getAttribute("data-action");if(action==="print")window.print();if(action==="startOver")startOver()}
+});
+</script>
+</body>
+</html>

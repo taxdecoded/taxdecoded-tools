@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Loan &amp; Education Credit Calculator | TaxDecoded — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:460px;margin:8px auto 0}
+.pw{margin-bottom:24px}.pw .pl{font-size:12px;color:var(--text-lt);margin-bottom:8px;font-weight:500}
+.pb{display:flex;gap:5px}.ps{flex:1;height:4px;border-radius:2px;background:var(--bdr);transition:background .4s}.ps.a{background:var(--gold)}.ps.d{background:var(--navy)}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.ni input{width:100%;padding:11px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.ni input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.ni input::placeholder{color:var(--text-lt)}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ro{position:relative}.ro input{position:absolute;opacity:0;pointer-events:none}
+.ro label{display:flex;align-items:center;justify-content:center;padding:11px 8px;border:2px solid var(--bdr);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;background:var(--white)}
+.ro input:checked+label{border-color:var(--navy);background:var(--navy);color:var(--gold-light)}.ro label:hover{border-color:var(--gold)}
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.tip .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.tip:hover .tt,.tip:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bs{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bs:hover{border-color:var(--gold)}
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;border:2px solid;position:relative;overflow:hidden}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;border-radius:50%;opacity:.06;background:var(--gold)}
+.rh.r-yes{background:linear-gradient(145deg,#edf8f2,#daf1e3);border-color:#aeddc6}
+.rh.r-part{background:linear-gradient(145deg,#fef9ee,#fdf0d4);border-color:#e8d48c}
+.rh.r-no{background:linear-gradient(145deg,#fdecea,#f9d6d2);border-color:#e8a9a3}
+.rh>*{position:relative;z-index:1}
+.rec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+.rh.r-yes .rec-label{background:rgba(45,133,94,.12);color:var(--green-dk)}
+.rh.r-part .rec-label{background:rgba(180,140,30,.12);color:#8a6d1b}
+.rh.r-no .rec-label{background:rgba(181,55,42,.12);color:var(--red)}
+.rh h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.sav{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sav .sv-a{font-size:42px;font-weight:700;font-family:'Playfair Display',serif;color:var(--navy);line-height:1.1}
+.sav .sv-l{font-size:13px;color:var(--text-sec);font-weight:500;margin-top:4px}
+.sav .sv-ln{width:48px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:1px}
+.cmp{display:grid;grid-template-columns:1fr 36px 1fr;align-items:stretch;margin-bottom:24px}
+.cc2{background:var(--white);border-radius:var(--r);padding:20px 14px;text-align:center;box-shadow:var(--sh-sm);border:2px solid var(--bdr-lt);transition:all .2s}
+.cc2.w{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,39,68,.08)}
+.cc2 .cl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-lt);margin-bottom:8px}
+.cc2 .ca{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy)}
+.cc2.w .cl{color:var(--gold-dark)}
+.wt{display:inline-block;margin-top:8px;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green-dk);background:var(--green-pale);padding:3px 10px;border-radius:10px}
+.cv{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-lt)}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .sub{font-size:11px;color:var(--text-lt)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fdf6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}
+  .hdr,.pw,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+  .ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0;border-radius:2px}
+  .ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+  .ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;margin-bottom:4px}
+  .pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}
+  .pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}
+  .pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0;border-radius:1px}
+  .rh{break-inside:avoid;margin-top:24px;box-shadow:none!important;border:2px solid var(--bdr)!important}.rh::before,.rh::after{display:none}
+  .cmp{break-inside:avoid}.cc2{box-shadow:none!important;border:1.5px solid var(--bdr)!important}.cc2.w{border:2px solid var(--navy)!important}
+  .bd{box-shadow:none!important;break-inside:avoid;border:1px solid var(--bdr)!important}
+  .nb{break-inside:avoid}.card{box-shadow:none!important}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:28px}.rg{grid-template-columns:1fr}.cmp{grid-template-columns:1fr;gap:8px}.cv{transform:rotate(90deg);padding:4px 0}.sav .sv-a{font-size:32px}.rh h2{font-size:22px}}
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input,.ni input{min-height:44px;font-size:16px}
+select{font-size:16px}
+</style>
+</head>
+<body>
+<div id="accessGate" style="position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif">
+  <div style="text-align:center;max-width:380px;padding:24px">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px"><span style="color:var(--navy)">Tax</span><span style="color:var(--gold)">Decoded</span></div>
+    <div style="width:40px;height:3px;background:var(--gold);margin:0 auto 24px;border-radius:2px"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px">Enter Access Code</h2>
+    <p style="color:var(--text-sec);font-size:14px;margin-bottom:24px;line-height:1.5">This calculator requires an access code to continue.</p>
+    <input id="gateInput" type="text" placeholder="Access Code" autocomplete="off" style="width:100%;padding:14px 16px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--bdr);border-radius:10px;text-align:center;letter-spacing:.15em;text-transform:uppercase;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--bdr)'">
+    <div id="gateError" style="color:var(--red);font-size:13px;margin-top:8px;display:none">Invalid access code. Please try again.</div>
+    <button id="gateBtn" style="width:100%;margin-top:16px;padding:14px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--gold-light);border:none;border-radius:10px;cursor:pointer;transition:background .2s" onmouseover="this.style.background='#243352'" onmouseout="this.style.background='var(--navy)'">Unlock Calculator</button>
+    <a href="/" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--text-sec);text-decoration:none">&larr; Back to Tools</a>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE='EDUCATION2025',KEY='td_access_education';
+  if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
+  var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
+  function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
+  btn.addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+})();
+</script>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Education Tax Benefits Calculator</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div>
+    <div class="brand-line"></div>
+    <div class="hdr-badge">Education Benefits &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>Student Loans &amp;<br><em>Education Credits.</em></h1>
+    <p>Find out which education tax benefit saves you the most &mdash; student loan interest deduction, American Opportunity Credit, or Lifetime Learning Credit.</p>
+  </div>
+  <div class="pw"><div class="pl">Step <span id="sn">1</span> of 3</div><div class="pb"><div class="ps a" id="p1"></div><div class="ps" id="p2"></div><div class="ps" id="p3"></div></div></div>
+
+  <!-- Step 1 -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Filing Information</div></div><div class="ci">Enter your filing status and income. Education benefits have <strong>income phaseouts</strong> that differ by credit type.</div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="hoh">Head of Household</option></select><div class="ht">Note: MFS filers cannot claim education credits or the student loan interest deduction.</div></div>
+    <div class="f"><label>Modified Adjusted Gross Income (MAGI)</label><div class="di"><input type="text" id="magi" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Who is the student?</label><div class="rg"><div class="ro"><input type="radio" name="who" id="who_self" value="self" checked><label for="who_self">Myself</label></div><div class="ro"><input type="radio" name="who" id="who_dep" value="dependent"><label for="who_dep">My Dependent</label></div></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 2: Education Expenses -->
+  <div class="step" id="s2"><div class="card"><div class="ch"><div class="ct">Step 2: Education Expenses</div><div class="cs">Tuition, fees, and student loan interest</div></div><div class="ci">Enter qualified education expenses paid in 2025. <strong>Scholarships and grants reduce qualified expenses.</strong></div>
+    <div class="f"><label>Qualified tuition &amp; fees paid <span class="tip" tabindex="0">?<span class="tt">Tuition and required enrollment fees at an eligible institution. Does NOT include room, board, insurance, or transportation.</span></span></label><div class="di"><input type="text" id="tuition" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Course materials (books, supplies, equipment) <span class="tip" tabindex="0">?<span class="tt">Required course materials qualify for AOTC only. LLC does not include course materials.</span></span></label><div class="di"><input type="text" id="materials" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Scholarships &amp; grants received (tax-free portion)</label><div class="di"><input type="text" id="scholarships" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Student loan interest paid in 2025 <span class="tip" tabindex="0">?<span class="tt">From Form 1098-E. Max deduction is $2,500. This is an above-the-line deduction (reduces AGI).</span></span></label><div class="di"><input type="text" id="sli" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn2">&larr; Back</button><button class="btn bp" data-btn-id="btn3">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 3: AOTC Eligibility -->
+  <div class="step" id="s3"><div class="card"><div class="ch"><div class="ct">Step 3: Credit Eligibility</div><div class="cs">Determines AOTC vs LLC</div></div><div class="ci">The <strong>American Opportunity Credit (AOTC)</strong> is more valuable but has stricter rules. Answer these to see if you qualify.</div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="firstFour" checked style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">Student is in first 4 years of postsecondary education</label></div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="halfTime" checked style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">Student is enrolled at least half-time for at least one academic period</label></div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="noFelony" checked style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">Student has NOT been convicted of a federal or state felony drug offense</label></div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="notClaimedFour" checked style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">AOTC has NOT been claimed for this student for 4 prior tax years</label></div>
+    <div class="f"><label>How many years has AOTC been claimed for this student?</label><div class="ni"><input type="text" id="aotcYears" placeholder="0" inputmode="numeric" value="0"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn4">&larr; Back</button><button class="btn bp" data-btn-id="btn5">See My Benefits &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This analysis is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance specific to your situation.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Tax laws are complex and individual circumstances vary. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+document.querySelectorAll('.di input, .ni input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+
+var cs=1;
+function go(n){
+  if(n>1&&cs===1){
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(!$('flSelect').value){em.textContent='\u26a0 Please select a filing status.';em.style.display='block';return}
+    em.style.display='none'}
+  $(cs<=3?'s'+cs:'sr').classList.remove('active');$(n<=3?'s'+n:'sr').classList.add('active');
+  for(var i=1;i<=3;i++){var e=$('p'+i);e.className='ps';if(i<n)e.classList.add('d');else if(i===n)e.classList.add('a')}
+  $('sn').textContent=Math.min(n,3);cs=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function calc(){
+  var f=$('flSelect').value;
+  var fsLabel={single:'Single',mfj:'Married Filing Jointly',hoh:'Head of Household'}[f];
+  var magi=pv('magi');
+  var isMFJ=f==='mfj';
+  var tuition=pv('tuition');
+  var materials=pv('materials');
+  var scholarships=pv('scholarships');
+  var sli=Math.min(pv('sli'),2500);
+  var firstFour=$('firstFour').checked;
+  var halfTime=$('halfTime').checked;
+  var noFelony=$('noFelony').checked;
+  var notClaimedFour=$('notClaimedFour').checked;
+  var aotcYears=parseInt($('aotcYears').value)||0;
+
+  /* Qualified expenses */
+  var qeAOTC=Math.max(tuition+materials-scholarships,0);
+  var qeLLC=Math.max(tuition-scholarships,0); // LLC doesn't include materials
+
+  /* ===== AOTC (American Opportunity Tax Credit) ===== */
+  var aotcEligible=firstFour&&halfTime&&noFelony&&notClaimedFour&&aotcYears<4;
+
+  /* AOTC: 100% of first $2,000 + 25% of next $2,000 = max $2,500 */
+  var aotcRaw=0;
+  if(aotcEligible){
+    aotcRaw=Math.min(qeAOTC,2000)+Math.min(Math.max(qeAOTC-2000,0),2000)*0.25;
+    aotcRaw=Math.min(aotcRaw,2500);
+  }
+
+  /* AOTC phaseout: $80K-$90K single, $160K-$180K MFJ */
+  var aotcPoStart=isMFJ?160000:80000;
+  var aotcPoEnd=isMFJ?180000:90000;
+  var aotcCredit=aotcRaw;
+  if(magi>aotcPoStart){
+    var ratio=Math.min((magi-aotcPoStart)/(aotcPoEnd-aotcPoStart),1);
+    aotcCredit=Math.max(aotcRaw*(1-ratio),0);
+  }
+  /* 40% of AOTC is refundable */
+  var aotcRefundable=aotcCredit*0.40;
+  var aotcNonRefundable=aotcCredit*0.60;
+
+  /* ===== LLC (Lifetime Learning Credit) ===== */
+  /* 20% of first $10,000 = max $2,000 */
+  var llcRaw=Math.min(qeLLC,10000)*0.20;
+
+  /* LLC phaseout: $80K-$90K single, $160K-$180K MFJ (2025) */
+  var llcPoStart=isMFJ?160000:80000;
+  var llcPoEnd=isMFJ?180000:90000;
+  var llcCredit=llcRaw;
+  if(magi>llcPoStart){
+    var ratio2=Math.min((magi-llcPoStart)/(llcPoEnd-llcPoStart),1);
+    llcCredit=Math.max(llcRaw*(1-ratio2),0);
+  }
+
+  /* ===== Student Loan Interest Deduction ===== */
+  /* Above-the-line deduction, max $2,500 */
+  /* Phaseout: $75K-$90K single, $155K-$185K MFJ */
+  var sliPoStart=isMFJ?155000:75000;
+  var sliPoEnd=isMFJ?185000:90000;
+  var sliDed=sli;
+  if(magi>sliPoStart){
+    var ratio3=Math.min((magi-sliPoStart)/(sliPoEnd-sliPoStart),1);
+    sliDed=Math.max(sli*(1-ratio3),0);
+  }
+  /* Estimate tax savings from deduction at ~22% marginal rate (simplified) */
+  var margEst=0.22; // reasonable middle estimate
+  if(magi<48475)margEst=0.12;else if(magi<103350)margEst=0.22;else if(magi<197300)margEst=0.24;
+  var sliSavings=sliDed*margEst;
+
+  /* Best option */
+  var bestCredit=Math.max(aotcCredit,llcCredit);
+  var bestName=aotcCredit>=llcCredit&&aotcEligible?'AOTC':'LLC';
+  var totalBenefit=bestCredit+sliSavings; // credit + deduction savings
+
+  /* Result styling */
+  var rc2,hl,rlabel;
+  if(totalBenefit<=0){rc2='r-no';hl='No Benefits Available';rlabel='Phased Out'}
+  else if(bestCredit<aotcRaw||sliDed<sli){rc2='r-part';hl='Partial Benefits';rlabel='Reduced by Income'}
+  else{rc2='r-yes';hl='Full Benefits!';rlabel='Maximum Savings'}
+
+  var h='<div class="rh '+rc2+'">';
+  h+='<div class="rec-label">'+rlabel+'</div>';
+  h+='<h2>'+hl+'</h2>';
+  h+='<div class="sav"><div class="sv-a">$'+fm(totalBenefit)+'</div>';
+  h+='<div class="sv-l">total estimated tax savings from education benefits</div>';
+  h+='<div class="sv-ln"></div></div></div>';
+
+  /* Side-by-side AOTC vs LLC */
+  if(aotcEligible){
+    h+='<div class="cmp">';
+    h+='<div class="cc2 '+(bestName==='AOTC'?'w':'')+'"><div class="cl">AOTC</div><div class="ca">$'+fm(aotcCredit)+'</div>'+(bestName==='AOTC'?'<div class="wt">Better for you</div>':'')+'</div>';
+    h+='<div class="cv">VS</div>';
+    h+='<div class="cc2 '+(bestName==='LLC'?'w':'')+'"><div class="cl">Lifetime Learning</div><div class="ca">$'+fm(llcCredit)+'</div>'+(bestName==='LLC'?'<div class="wt">Better for you</div>':'')+'</div>';
+    h+='</div>';
+  }
+
+  /* Recommendation */
+  if(bestName==='AOTC'&&aotcCredit>0){
+    h+='<div class="nb grn"><strong>Take the AOTC.</strong> It\'s worth $'+fm(aotcCredit)+', and 40% ($'+fm(aotcRefundable)+') is <strong>refundable</strong> &mdash; you get it even if you owe $0 in taxes. You can claim the AOTC for '+(4-aotcYears)+' more year'+(4-aotcYears!==1?'s':'')+'.</div>';
+  } else if(llcCredit>0){
+    h+='<div class="nb grn"><strong>Take the Lifetime Learning Credit.</strong> Worth $'+fm(llcCredit)+'. ';
+    if(!aotcEligible) h+='You don\'t qualify for the AOTC'+(aotcYears>=4?' (already claimed 4 years)':'')+', so LLC is your best option. ';
+    h+='Note: LLC is non-refundable (only reduces tax owed, no refund if tax is $0).</div>';
+  }
+  if(sliDed>0) h+='<div class="nb blu"><strong>Student Loan Interest Deduction: $'+fm(sliDed)+'</strong> &mdash; This is an above-the-line deduction (you don\'t need to itemize). It reduces your taxable income, saving you an estimated $'+fm(sliSavings)+' in taxes. <strong>You can claim this AND an education credit.</strong></div>';
+  if(sli>0&&sliDed===0) h+='<div class="nb am"><strong>Student loan interest deduction phased out.</strong> Your MAGI of $'+fw(magi)+' exceeds the $'+fw(sliPoEnd)+' limit.</div>';
+
+  /* AOTC details */
+  h+='<div class="bd"><div class="bh">American Opportunity Credit (AOTC)</div>';
+  h+='<div class="bw"><div class="bl">Eligible?</div><div class="bv" style="color:'+(aotcEligible?'var(--green-dk)':'var(--red)')+'">'+(aotcEligible?'Yes':'No')+'</div></div>';
+  h+='<div class="bw"><div class="bl">Qualified expenses (tuition + materials - scholarships)</div><div class="bv">$'+fw(qeAOTC)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Credit before phaseout</div><div class="bv">$'+fm(aotcRaw)+'</div></div>';
+  if(aotcRaw>aotcCredit) h+='<div class="bw"><div><div class="bl">Phaseout reduction</div><div class="sub">MAGI $'+fw(magi)+' (phaseout: $'+fw(aotcPoStart)+'&ndash;$'+fw(aotcPoEnd)+')</div></div><div class="bv" style="color:var(--red)">-$'+fm(aotcRaw-aotcCredit)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Non-refundable portion (60%)</div><div class="bv">$'+fm(aotcNonRefundable)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Refundable portion (40%)</div><div class="bv" style="color:var(--green-dk)">$'+fm(aotcRefundable)+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">Total AOTC</div><div class="bv">$'+fm(aotcCredit)+'</div></div></div>';
+
+  /* LLC details */
+  h+='<div class="bd"><div class="bh">Lifetime Learning Credit (LLC)</div>';
+  h+='<div class="bw"><div class="bl">Qualified expenses (tuition - scholarships)</div><div class="bv">$'+fw(qeLLC)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Credit before phaseout (20% of up to $10K)</div><div class="bv">$'+fm(llcRaw)+'</div></div>';
+  if(llcRaw>llcCredit) h+='<div class="bw"><div><div class="bl">Phaseout reduction</div><div class="sub">MAGI $'+fw(magi)+' (phaseout: $'+fw(llcPoStart)+'&ndash;$'+fw(llcPoEnd)+')</div></div><div class="bv" style="color:var(--red)">-$'+fm(llcRaw-llcCredit)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Refundable?</div><div class="bv">No (non-refundable only)</div></div>';
+  h+='<div class="bw tot"><div class="bl">Total LLC</div><div class="bv">$'+fm(llcCredit)+'</div></div></div>';
+
+  /* Student loan interest */
+  if(sli>0){
+    h+='<div class="bd"><div class="bh">Student Loan Interest Deduction</div>';
+    h+='<div class="bw"><div class="bl">Interest paid</div><div class="bv">$'+fw(sli)+'</div></div>';
+    if(sli>sliDed) h+='<div class="bw"><div><div class="bl">Phaseout reduction</div><div class="sub">MAGI $'+fw(magi)+' (phaseout: $'+fw(sliPoStart)+'&ndash;$'+fw(sliPoEnd)+')</div></div><div class="bv" style="color:var(--red)">-$'+fm(sli-sliDed)+'</div></div>';
+    h+='<div class="bw"><div class="bl">Allowable deduction</div><div class="bv">$'+fm(sliDed)+'</div></div>';
+    h+='<div class="bw tot"><div class="bl">Estimated Tax Savings</div><div class="bv">$'+fm(sliSavings)+'</div></div></div>';
+  }
+
+  /* Key rules */
+  h+='<div class="bd"><div class="bh">Key Rules to Remember</div>';
+  h+='<div class="bw"><div class="bl">Can claim AOTC and LLC in same year?</div><div class="bv" style="color:var(--red)">Not for same student</div></div>';
+  h+='<div class="bw"><div class="bl">Can claim credit + SLI deduction?</div><div class="bv" style="color:var(--green-dk)">Yes, both allowed</div></div>';
+  h+='<div class="bw"><div class="bl">Who should claim (parent vs student)?</div><div class="bv">Whoever claims the dependent</div></div>';
+  h+='<div class="bw"><div class="bl">MFS eligible?</div><div class="bv" style="color:var(--red)">No credits or SLI deduction</div></div></div>';
+
+  h+='<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>';
+  $('rc').innerHTML=h;
+  $('s'+cs).classList.remove('active');$('sr').classList.add('active');
+  for(var i=1;i<=3;i++)$('p'+i).className='ps d';
+  $('sn').textContent='\u2713';cs=4;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');cs=1;
+  for(var i=1;i<=3;i++){var e=$('p'+i);e.className='ps';if(i===1)e.classList.add('a')}
+  $('sn').textContent='1';
+  document.querySelectorAll('.di input, .ni input').forEach(function(i){i.value=''});
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(i){i.checked=true});
+  $('flSelect').selectedIndex=0;
+  $('aotcYears').value='0';
+  document.querySelector('#who_self').checked=true;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var b1=document.querySelector('[data-btn-id="btn1"]');if(b1)b1.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b2=document.querySelector('[data-btn-id="btn2"]');if(b2)b2.addEventListener("click",function(e){e.preventDefault();go(1)});
+  var b3=document.querySelector('[data-btn-id="btn3"]');if(b3)b3.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b4=document.querySelector('[data-btn-id="btn4"]');if(b4)b4.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b5=document.querySelector('[data-btn-id="btn5"]');if(b5)b5.addEventListener("click",function(e){e.preventDefault();calc()});
+});
+document.addEventListener("click", function(e){
+  var t=e.target;if(t.tagName==="BUTTON"||t.closest("button")){t=t.closest("button")||t;var action=t.getAttribute("data-action");if(action==="print")window.print();if(action==="startOver")startOver()}
+});
+</script>
+</body>
+</html>

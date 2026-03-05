@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W-4 Withholding Optimizer | TaxDecoded — 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(26,39,68,.008) 2px,rgba(26,39,68,.008) 4px);pointer-events:none;z-index:0}
+.ctr{max-width:660px;margin:0 auto;padding:20px 16px 40px;position:relative;z-index:1}
+.hdr{text-align:center;padding:28px 0 20px}
+.brand{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:16px}.brand span:first-child{color:var(--navy)}.brand span:last-child{color:var(--gold)}
+.brand-line{width:32px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+.hdr-badge{display:inline-block;background:var(--navy);color:var(--gold-light);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:20px;margin-bottom:18px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:800;color:var(--navy);line-height:1.15;margin-bottom:4px}
+.hdr h1 em{color:var(--gold-dark);font-style:normal}
+.hdr p{color:var(--text-sec);font-size:14px;line-height:1.6;max-width:460px;margin:8px auto 0}
+.pw{margin-bottom:24px}.pw .pl{font-size:12px;color:var(--text-lt);margin-bottom:8px;font-weight:500}
+.pb{display:flex;gap:5px}.ps{flex:1;height:4px;border-radius:2px;background:var(--bdr);transition:background .4s}.ps.a{background:var(--gold)}.ps.d{background:var(--navy)}
+.card{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-md);border:1px solid var(--bdr-lt);padding:32px 28px;margin-bottom:16px;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.ch{background:var(--navy);margin:-32px -28px 24px;padding:16px 28px;border-radius:var(--rl) var(--rl) 0 0}
+.ch .ct{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--white)}.ch .cs{color:rgba(255,255,255,.6);font-size:12px;margin-top:2px}
+.ci{color:var(--text-sec);font-size:13px;line-height:1.6;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr-lt)}.ci strong{color:var(--text)}
+.f{margin-bottom:18px}.f:last-child{margin-bottom:0}
+.f label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.f .ht{font-size:11.5px;color:var(--text-lt);font-weight:400;margin-top:3px;line-height:1.5}
+.di{position:relative}.di::before{content:'$';position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text-lt);font-weight:500;pointer-events:none}
+.di input{width:100%;padding:11px 12px 11px 26px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.di input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.di input::placeholder{color:var(--text-lt)}
+.ni{position:relative}
+.ni input{width:100%;padding:11px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;transition:all .2s;outline:none;color:var(--text)}
+.ni input:focus{border-color:var(--gold);background:#fffcf2;box-shadow:0 0 0 3px rgba(197,165,90,.12)}
+.ni input::placeholder{color:var(--text-lt)}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ro{position:relative}.ro input{position:absolute;opacity:0;pointer-events:none}
+.ro label{display:flex;align-items:center;justify-content:center;padding:11px 8px;border:2px solid var(--bdr);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-align:center;line-height:1.3;background:var(--white)}
+.ro input:checked+label{border-color:var(--navy);background:var(--navy);color:var(--gold-light)}.ro label:hover{border-color:var(--gold)}
+.tip{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;background:var(--gold-pale);color:var(--gold-dark);font-size:9px;font-weight:700;cursor:help;position:relative;vertical-align:middle;margin-left:3px;border:1px solid var(--gold-light)}
+.tip .tt{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:11.5px;font-weight:400;padding:10px 14px;border-radius:8px;width:250px;line-height:1.55;z-index:10;box-shadow:var(--sh-lg)}
+.tip:hover .tt,.tip:focus .tt{display:block}
+.br{display:flex;gap:10px;margin-top:24px}
+.btn{flex:1;padding:13px 18px;border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.bp{background:var(--gold);color:var(--navy)}.bp:hover{background:var(--gold-dark);color:#fff}
+.bs{background:var(--cream);color:var(--text-sec);border:1.5px solid var(--bdr)}.bs:hover{border-color:var(--gold)}
+/* Results */
+.rh{text-align:center;padding:40px 28px 36px;border-radius:var(--rl);margin-bottom:24px;border:2px solid;position:relative;overflow:hidden}
+.rh::before{content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;opacity:.08;background:var(--navy)}
+.rh::after{content:'';position:absolute;bottom:-30px;left:-30px;width:80px;height:80px;border-radius:50%;opacity:.06;background:var(--gold)}
+.rh.r-over{background:linear-gradient(145deg,#fef9ee,#fdf0d4);border-color:#e8d48c}
+.rh.r-under{background:linear-gradient(145deg,#fdecea,#f9d6d2);border-color:#e8a9a3}
+.rh.r-good{background:linear-gradient(145deg,#edf8f2,#daf1e3);border-color:#aeddc6}
+.rh>*{position:relative;z-index:1}
+.rec-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
+.rh.r-over .rec-label{background:rgba(180,140,30,.12);color:#8a6d1b}
+.rh.r-under .rec-label{background:rgba(181,55,42,.12);color:var(--red)}
+.rh.r-good .rec-label{background:rgba(45,133,94,.12);color:var(--green-dk)}
+.rh h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.sav{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sav .sv-a{font-size:42px;font-weight:700;font-family:'Playfair Display',serif;color:var(--navy);line-height:1.1}
+.sav .sv-l{font-size:13px;color:var(--text-sec);font-weight:500;margin-top:4px}
+.sav .sv-ln{width:48px;height:2px;background:var(--gold);margin:12px auto 0;border-radius:1px}
+.bd{background:var(--white);border-radius:var(--rl);box-shadow:var(--sh-sm);overflow:hidden;margin-bottom:20px;border:1px solid var(--bdr-lt)}
+.bh{background:var(--navy);color:var(--gold-light);padding:12px 20px;font-size:13px;font-weight:600;letter-spacing:.03em}
+.bw{display:flex;justify-content:space-between;align-items:center;padding:11px 20px;border-bottom:1px solid var(--bdr-lt);font-size:13px}
+.bw:last-child{border-bottom:none}.bw .bl{color:var(--text-sec)}.bw .bv{font-weight:600;font-variant-numeric:tabular-nums}
+.bw .sub{font-size:11px;color:var(--text-lt)}
+.bw.tot{background:var(--gold-bg);font-weight:700;font-size:14px;border-bottom:none}.bw.tot .bl{color:var(--navy)}.bw.tot .bv{color:var(--navy)}
+.nb{border-radius:var(--r);padding:14px 18px;font-size:12.5px;line-height:1.6;margin-bottom:20px}
+.nb.am{background:#fdf6e3;border:1px solid #e2d08a;color:#6e5a1a}.nb.am strong{color:#53440e}
+.nb.blu{background:#eef3fa;border:1px solid #c8d6ea;color:#2a3d5c}
+.nb.grn{background:#edf8f2;border:1px solid #b5dfca;color:#1a5c3a}.nb.grn strong{color:#0f3d24}
+.nb.red{background:#fdecea;border:1px solid #e8ada7;color:#7a2018}.nb.red strong{color:#5a110b}
+.dc{text-align:center;font-size:10.5px;color:var(--text-lt);line-height:1.7;padding:20px 16px;border-top:1px solid var(--bdr-lt);margin-top:28px}
+.ra{display:flex;gap:10px;margin-top:8px}
+.pb2{text-align:center;margin-top:16px;font-size:11px;color:var(--text-lt)}.pb2 span{color:var(--gold-dark);font-weight:600}
+.step{display:none}.step.active{display:block}
+.w4-box{background:var(--navy);border-radius:var(--rl);padding:24px;margin-bottom:20px;color:#fff}
+.w4-box .w4-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--gold-light);margin-bottom:16px}
+.w4-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px}
+.w4-row:last-child{border-bottom:none}
+.w4-row .w4-lbl{color:rgba(255,255,255,.7)}
+.w4-row .w4-val{font-weight:700;color:var(--gold-light);font-variant-numeric:tabular-nums}
+.w4-row.w4-head{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);padding:6px 0}
+/* Print */
+@media print{
+  .step{display:none!important}.step.active{display:block!important}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  body{background:#fff!important;font-size:11pt}body::before{display:none}
+  .ctr{max-width:100%;padding:0}
+  .hdr,.pw,.ra,.btn,.dc,.pb2{display:none!important}
+  .ph{display:flex!important;flex-direction:column;align-items:center;padding:40px 0 24px;border-bottom:2px solid var(--navy)}
+  .ph .phb{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+  .ph .phb span:first-child{color:var(--navy)}.ph .phb span:last-child{color:var(--gold)}
+  .ph .phr{width:40px;height:3px;background:var(--gold);margin:12px 0;border-radius:2px}
+  .ph .pht{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--navy);letter-spacing:.04em;text-transform:uppercase}
+  .ph .phs{font-size:10pt;color:var(--text-sec);margin-top:4px}
+  .pf{display:flex!important;flex-direction:column;align-items:center;padding:32px 0 16px;border-top:1px solid var(--bdr);margin-top:32px}
+  .pf .pfb{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;margin-bottom:4px}
+  .pf .pfb span:first-child{color:var(--navy)}.pf .pfb span:last-child{color:var(--gold)}
+  .pf .pfl{font-size:9pt;color:var(--text-lt);line-height:1.6;text-align:center}
+  .pf .pfr{width:32px;height:2px;background:var(--gold);margin:8px 0;border-radius:1px}
+  .rh{break-inside:avoid;margin-top:24px;box-shadow:none!important;border:2px solid var(--bdr)!important}.rh::before,.rh::after{display:none}
+  .bd{box-shadow:none!important;break-inside:avoid;border:1px solid var(--bdr)!important}
+  .w4-box{break-inside:avoid}
+  .nb{break-inside:avoid}.card{box-shadow:none!important}
+  @page{margin:.6in .75in;size:letter}
+}
+.ph,.pf{display:none}
+@media(max-width:480px){.ctr{padding:12px 12px 32px}.card{padding:24px 20px}.ch{margin:-24px -20px 20px;padding:14px 20px}.hdr h1{font-size:28px}.rg{grid-template-columns:1fr}.sav .sv-a{font-size:32px}.rh h2{font-size:22px}}
+.err-msg{background:#fdecea;border:1.5px solid #e8ada7;color:#b5372a;font-size:13px;font-weight:500;padding:10px 14px;border-radius:8px;margin-top:12px;display:none;text-align:center;animation:fu .3s ease}
+*{-webkit-tap-highlight-color:rgba(197,165,90,.15)}
+.btn{min-height:48px}
+.di input,.ni input{min-height:44px;font-size:16px}
+select{font-size:16px}
+</style>
+</head>
+<body>
+<div id="accessGate" style="position:fixed;inset:0;z-index:9999;background:var(--cream);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif">
+  <div style="text-align:center;max-width:380px;padding:24px">
+    <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:12px"><span style="color:var(--navy)">Tax</span><span style="color:var(--gold)">Decoded</span></div>
+    <div style="width:40px;height:3px;background:var(--gold);margin:0 auto 24px;border-radius:2px"></div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:8px">Enter Access Code</h2>
+    <p style="color:var(--text-sec);font-size:14px;margin-bottom:24px;line-height:1.5">This calculator requires an access code to continue.</p>
+    <input id="gateInput" type="text" placeholder="Access Code" autocomplete="off" style="width:100%;padding:14px 16px;font-size:16px;font-family:'DM Sans',sans-serif;border:1.5px solid var(--bdr);border-radius:10px;text-align:center;letter-spacing:.15em;text-transform:uppercase;outline:none;transition:border-color .2s" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--bdr)'">
+    <div id="gateError" style="color:var(--red);font-size:13px;margin-top:8px;display:none">Invalid access code. Please try again.</div>
+    <button id="gateBtn" style="width:100%;margin-top:16px;padding:14px;font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--gold-light);border:none;border-radius:10px;cursor:pointer;transition:background .2s" onmouseover="this.style.background='#243352'" onmouseout="this.style.background='var(--navy)'">Unlock Calculator</button>
+    <a href="/" style="display:inline-block;margin-top:16px;font-size:13px;color:var(--text-sec);text-decoration:none">&larr; Back to Tools</a>
+  </div>
+</div>
+<script>
+(function(){
+  var CODE='W42025',KEY='td_access_w4';
+  if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
+  var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
+  function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
+  btn.addEventListener('click',check);
+  inp.addEventListener('keydown',function(e){if(e.key==='Enter')check()});
+})();
+</script>
+<div class="ctr">
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">W-4 Withholding Optimizer</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="hdr">
+    <div class="brand"><span>Tax</span><span>Decoded</span></div>
+    <div class="brand-line"></div>
+    <div class="hdr-badge">W-4 Withholding &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <h1>Stop Overpaying.<br><em>Optimize Your W-4.</em></h1>
+    <p>Get the exact numbers for your W-4 so you don't overwithhold (free loan to the IRS) or underwithhold (surprise tax bill).</p>
+  </div>
+  <div class="pw"><div class="pl">Step <span id="sn">1</span> of 4</div><div class="pb"><div class="ps a" id="p1"></div><div class="ps" id="p2"></div><div class="ps" id="p3"></div><div class="ps" id="p4"></div></div></div>
+
+  <!-- Step 1: Filing Info -->
+  <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Your Filing Information</div></div><div class="ci">We'll use this to determine your standard deduction and tax brackets. Enter your numbers in the <strong>highlighted gold fields</strong>.</div>
+    <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
+    <div class="f"><label>Number of qualifying children under 17 <span class="tip" tabindex="0">?<span class="tt">Children who lived with you for more than half the year and are under age 17 at end of 2025. Used for the Child Tax Credit ($2,200/child under OBBBA).</span></span></label><div class="ni"><input type="text" id="numKids" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Number of other dependents <span class="tip" tabindex="0">?<span class="tt">Dependents who don't qualify for the Child Tax Credit (e.g., children 17+, elderly parents). $500 credit each.</span></span></label><div class="ni"><input type="text" id="numOther" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 2: Income -->
+  <div class="step" id="s2"><div class="card"><div class="ch"><div class="ct">Step 2: Your Income &amp; Withholding</div><div class="cs">All jobs for the tax year</div></div><div class="ci">Enter your <strong>annual</strong> wages and the total federal income tax that will be withheld for the full year. Check a recent pay stub and multiply to get annual figures.</div>
+    <div class="f"><label>Your annual W-2 wages (Job 1) <span class="tip" tabindex="0">?<span class="tt">Gross wages from your primary job. If paid biweekly, multiply one paycheck's gross by 26.</span></span></label><div class="di"><input type="text" id="wages1" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Federal tax withheld — full year (Job 1) <span class="tip" tabindex="0">?<span class="tt">Find federal tax withheld on your pay stub, multiply by remaining pay periods + YTD amount.</span></span></label><div class="di"><input type="text" id="wh1" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f" id="j2wrap" style="display:none"><label>Spouse / Job 2 annual wages</label><div class="di"><input type="text" id="wages2" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f" id="wh2wrap" style="display:none"><label>Federal tax withheld — full year (Job 2)</label><div class="di"><input type="text" id="wh2" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label style="cursor:pointer"><input type="checkbox" id="hasJob2" style="width:18px;height:18px;accent-color:var(--navy);cursor:pointer;vertical-align:middle;margin-right:6px">I have a second job or my spouse works</label></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn2">&larr; Back</button><button class="btn bp" data-btn-id="btn3">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 3: Other Income & Deductions -->
+  <div class="step" id="s3"><div class="card"><div class="ch"><div class="ct">Step 3: Other Income &amp; Adjustments</div><div class="cs">Non-wage income and deduction adjustments</div></div><div class="ci">Enter any additional income not from W-2 jobs and any deductions beyond the standard deduction.</div>
+    <div class="f"><label>Other income (interest, dividends, side hustle, rental, etc.) <span class="tip" tabindex="0">?<span class="tt">Income not subject to withholding: 1099 income, investment income, rental income, etc.</span></span></label><div class="di"><input type="text" id="otherInc" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Deductions beyond standard deduction <span class="tip" tabindex="0">?<span class="tt">Only if you plan to itemize. Enter the amount your itemized deductions EXCEED the standard deduction. If unsure, leave at 0.</span></span></label><div class="di"><input type="text" id="extraDed" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Estimated tax payments you'll make this year <span class="tip" tabindex="0">?<span class="tt">If you plan to make quarterly estimated payments (e.g., for side hustle income), enter the total for the year.</span></span></label><div class="di"><input type="text" id="estPay" placeholder="0" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn4">&larr; Back</button><button class="btn bp" data-btn-id="btn5">Continue &rarr;</button></div></div></div>
+
+  <!-- Step 4: Pay Frequency -->
+  <div class="step" id="s4"><div class="card"><div class="ch"><div class="ct">Step 4: Pay Frequency</div></div><div class="ci">This helps us calculate the <strong>per-paycheck</strong> adjustment for your W-4.</div>
+    <div class="f"><label>How often are you paid?</label><div class="rg"><div class="ro"><input type="radio" name="payfreq" id="pf_w" value="52"><label for="pf_w">Weekly</label></div><div class="ro"><input type="radio" name="payfreq" id="pf_bw" value="26" checked><label for="pf_bw">Biweekly</label></div><div class="ro"><input type="radio" name="payfreq" id="pf_sm" value="24"><label for="pf_sm">Semi-monthly</label></div><div class="ro"><input type="radio" name="payfreq" id="pf_m" value="12"><label for="pf_m">Monthly</label></div></div></div>
+    <div class="f"><label>Remaining pay periods this year <span class="tip" tabindex="0">?<span class="tt">How many more paychecks will you receive this year? This determines how to spread the adjustment across remaining checks.</span></span></label><div class="ni"><input type="text" id="remPeriods" placeholder="e.g. 20" inputmode="numeric"></div></div>
+    <div class="br"><button class="btn bs" data-btn-id="btn6">&larr; Back</button><button class="btn bp" data-btn-id="btn7">See My W-4 Numbers &rarr;</button></div></div></div>
+
+  <!-- Results -->
+  <div class="step" id="sr"><div id="rc"></div>
+    <div class="pf"><div class="pfb"><span>Tax</span><span>Decoded</span></div><div class="pfr"></div><div class="pfl">This analysis is for educational and informational purposes only.<br>It does not constitute tax advice. Consult a qualified tax professional for guidance specific to your situation.</div></div>
+    <div class="pb2">Built by <span>TaxDecoded</span></div>
+    <div class="dc">This tool is for educational and informational purposes only and does not constitute tax advice. Tax laws are complex and individual circumstances vary. Consult a qualified tax professional for advice specific to your situation.</div>
+  </div>
+</div>
+<script>
+function $(i){return document.getElementById(i)}
+function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
+function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
+document.querySelectorAll('.di input, .ni input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+$('hasJob2').addEventListener('change',function(){var s=this.checked?'block':'none';$('j2wrap').style.display=s;$('wh2wrap').style.display=s});
+
+var cs=1;
+function go(n){
+  if(n>1&&cs===1){
+    var em=document.getElementById('err1');if(!em){em=document.createElement('div');em.id='err1';em.className='err-msg';document.querySelector('#s1 .br').before(em)}
+    if(!$('flSelect').value){em.textContent='\u26a0 Please select a filing status.';em.style.display='block';return}
+    em.style.display='none'}
+  if(n>2&&cs===2){
+    var em2=document.getElementById('err2');if(!em2){em2=document.createElement('div');em2.id='err2';em2.className='err-msg';document.querySelector('#s2 .br').before(em2)}
+    if(pv('wages1')<=0){em2.textContent='\u26a0 Please enter your annual wages.';em2.style.display='block';return}
+    if(pv('wh1')<=0){em2.textContent='\u26a0 Please enter your expected federal tax withheld for the year.';em2.style.display='block';return}
+    em2.style.display='none'}
+  $(cs<=4?'s'+cs:'sr').classList.remove('active');$(n<=4?'s'+n:'sr').classList.add('active');
+  for(var i=1;i<=4;i++){var e=$('p'+i);e.className='ps';if(i<n)e.classList.add('d');else if(i===n)e.classList.add('a')}
+  $('sn').textContent=Math.min(n,4);cs=n;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* 2025 Tax Brackets (OBBBA) */
+var bk={
+  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
+  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
+  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
+  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+};
+function calcTax(ti,f){var t=0,p=0;for(var j=0;j<bk[f].length;j++){var l=bk[f][j][0],r=bk[f][j][1],a=Math.min(ti,l)-p;if(a<=0)break;t+=a*r;p=l}return t}
+
+/* Standard deductions 2025 OBBBA */
+var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+
+function calc(){
+  var f=$('flSelect').value;
+  var w1=pv('wages1'), wh1_=pv('wh1');
+  var w2=$('hasJob2').checked?pv('wages2'):0;
+  var wh2_=$('hasJob2').checked?pv('wh2'):0;
+  var totalWages=w1+w2;
+  var totalWH=wh1_+wh2_;
+  var otherInc=pv('otherInc');
+  var extraDed=pv('extraDed');
+  var estPay=pv('estPay');
+  var numKids=parseInt($('numKids').value)||0;
+  var numOther=parseInt($('numOther').value)||0;
+  var payFreqEl=document.querySelector('input[name="payfreq"]:checked');
+  var payFreq=payFreqEl?parseInt(payFreqEl.value):26;
+  var remPeriods=parseInt($('remPeriods').value)||payFreq;
+
+  /* Total income */
+  var totalIncome=totalWages+otherInc;
+
+  /* Standard deduction */
+  var stdDed=stdDeds[f];
+
+  /* Child Tax Credit (OBBBA $2,200/child + $500 other dependents) */
+  var ctc=numKids*2200+numOther*500;
+
+  /* Taxable income */
+  var taxableIncome=Math.max(totalIncome-stdDed-extraDed,0);
+
+  /* Total tax liability */
+  var totalTax=Math.max(calcTax(taxableIncome,f)-ctc,0);
+
+  /* Total payments (withholding + estimated) */
+  var totalPayments=totalWH+estPay;
+
+  /* Difference */
+  var diff=totalTax-totalPayments;
+  var isOverwithholding=diff<-100;
+  var isUnderwithholding=diff>100;
+  var isJustRight=!isOverwithholding&&!isUnderwithholding;
+
+  /* Per-paycheck adjustment */
+  var perCheck=remPeriods>0?Math.abs(diff)/remPeriods:0;
+
+  /* W-4 line values */
+  var line3=ctc; // Step 3: claim dependents
+  var line4a=otherInc>0?otherInc:0; // 4(a) other income
+  var line4b=extraDed>0?extraDed:0; // 4(b) deductions beyond standard
+  var line4c=0; // 4(c) extra withholding
+  if(isUnderwithholding){line4c=Math.ceil(perCheck)}
+
+  /* Build results */
+  var rc2,hl,rlabel;
+  if(isOverwithholding){rc2='r-over';hl="You're Overwithholding";rlabel='Overpaying'}
+  else if(isUnderwithholding){rc2='r-under';hl="You're Underwithholding";rlabel='Underpaying'}
+  else{rc2='r-good';hl="You're On Track";rlabel='Well Calibrated'}
+
+  var fsLabel={single:'Single',mfj:'Married Filing Jointly',mfs:'Married Filing Separately',hoh:'Head of Household'}[f];
+  var payFreqLabel={52:'Weekly',26:'Biweekly',24:'Semi-monthly',12:'Monthly'}[payFreq];
+
+  var h='<div class="rh '+rc2+'">';
+  h+='<div class="rec-label">'+rlabel+'</div>';
+  h+='<h2>'+hl+'</h2>';
+  h+='<div class="sav">';
+  if(isOverwithholding){
+    h+='<div class="sv-a">$'+fm(Math.abs(diff))+'</div>';
+    h+='<div class="sv-l">projected refund &mdash; you\'re giving the IRS a free loan</div>';
+  } else if(isUnderwithholding){
+    h+='<div class="sv-a">$'+fm(diff)+'</div>';
+    h+='<div class="sv-l">projected balance due &mdash; increase withholding to avoid penalties</div>';
+  } else {
+    h+='<div class="sv-a">$'+fm(Math.abs(diff))+'</div>';
+    h+='<div class="sv-l">projected difference &mdash; your withholding is well-calibrated</div>';
+  }
+  h+='<div class="sv-ln"></div></div></div>';
+
+  /* W-4 Instructions Box */
+  h+='<div class="w4-box"><div class="w4-title">Your W-4 Numbers &mdash; Hand This to HR</div>';
+  h+='<div class="w4-row w4-head"><span>W-4 Line</span><span>Enter This</span></div>';
+  h+='<div class="w4-row"><span class="w4-lbl">Step 1(c): Filing status</span><span class="w4-val">'+fsLabel+'</span></div>';
+  if(line3>0) h+='<div class="w4-row"><span class="w4-lbl">Step 3: Claim dependents</span><span class="w4-val">$'+fw(line3)+'</span></div>';
+  if(line4a>0) h+='<div class="w4-row"><span class="w4-lbl">Step 4(a): Other income</span><span class="w4-val">$'+fw(line4a)+'</span></div>';
+  if(line4b>0) h+='<div class="w4-row"><span class="w4-lbl">Step 4(b): Deductions</span><span class="w4-val">$'+fw(line4b)+'</span></div>';
+  if(line4c>0) h+='<div class="w4-row"><span class="w4-lbl">Step 4(c): Extra withholding per paycheck</span><span class="w4-val">$'+fw(line4c)+'</span></div>';
+  if(line3===0&&line4a===0&&line4b===0&&line4c===0) h+='<div class="w4-row"><span class="w4-lbl">Steps 2&ndash;4</span><span class="w4-val">Leave blank (defaults are correct)</span></div>';
+  h+='</div>';
+
+  /* Advice notes */
+  if(isOverwithholding){
+    h+='<div class="nb am"><strong>You\'re on track for a large refund.</strong> That means you\'re lending the IRS $'+fw(Math.round(Math.abs(diff)/12))+'/month interest-free. Consider reducing your withholding to put that money back in your paycheck.</div>';
+    h+='<div class="nb grn"><strong>How to fix it:</strong> Submit an updated W-4 to your employer. If you want a smaller refund, consider reducing your extra withholding or adding more allowances. The W-4 numbers above already reflect the optimal settings.</div>';
+  }
+  if(isUnderwithholding){
+    h+='<div class="nb red"><strong>You may owe $'+fm(diff)+' when you file.</strong> If your balance due exceeds $1,000, you could also face an underpayment penalty (currently ~8% annualized).</div>';
+    h+='<div class="nb grn"><strong>How to fix it:</strong> Add <strong>$'+fw(line4c)+' per paycheck</strong> in extra withholding on W-4 Line 4(c). Over your remaining '+remPeriods+' '+payFreqLabel.toLowerCase()+' pay periods, this covers the shortfall.</div>';
+  }
+  if(isJustRight){
+    h+='<div class="nb grn"><strong>Your withholding is well-calibrated.</strong> You\'re projected to be within $100 of your actual tax liability. No W-4 changes needed unless your situation changes.</div>';
+  }
+
+  if($('hasJob2').checked){
+    h+='<div class="nb blu"><strong>Multiple jobs note:</strong> When you or your spouse have multiple jobs, the IRS recommends checking the box in Step 2(c) of your W-4. This adjusts withholding tables for the higher combined income. Check this box on BOTH W-4s.</div>';
+  }
+
+  /* Tax calculation breakdown */
+  h+='<div class="bd"><div class="bh">Tax Calculation Breakdown</div>';
+  h+='<div class="bw"><div class="bl">Total W-2 wages</div><div class="bv">$'+fw(totalWages)+'</div></div>';
+  if(otherInc>0) h+='<div class="bw"><div class="bl">Other income</div><div class="bv">+$'+fw(otherInc)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Total income</div><div class="bv">$'+fw(totalIncome)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Standard deduction ('+fsLabel+')</div><div class="bv">-$'+fw(stdDed)+'</div></div>';
+  if(extraDed>0) h+='<div class="bw"><div class="bl">Additional deductions</div><div class="bv">-$'+fw(extraDed)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Taxable income</div><div class="bv">$'+fw(taxableIncome)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Federal income tax</div><div class="bv">$'+fm(calcTax(taxableIncome,f))+'</div></div>';
+  if(ctc>0) h+='<div class="bw"><div class="bl">Less: Child/dependent tax credits</div><div class="bv">-$'+fw(ctc)+'</div></div>';
+  h+='<div class="bw tot"><div class="bl">Estimated Total Tax</div><div class="bv">$'+fm(totalTax)+'</div></div></div>';
+
+  /* Withholding summary */
+  h+='<div class="bd"><div class="bh">Your Withholding vs. Tax Owed</div>';
+  h+='<div class="bw"><div class="bl">Federal tax withheld (all jobs)</div><div class="bv">$'+fw(totalWH)+'</div></div>';
+  if(estPay>0) h+='<div class="bw"><div class="bl">Estimated tax payments</div><div class="bv">$'+fw(estPay)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Total payments</div><div class="bv">$'+fw(totalPayments)+'</div></div>';
+  h+='<div class="bw"><div class="bl">Estimated total tax</div><div class="bv">$'+fm(totalTax)+'</div></div>';
+  var diffLabel=diff>=0?'Projected balance due':'Projected refund';
+  var diffColor=diff>100?'var(--red)':diff<-100?'var(--green-dk)':'var(--navy)';
+  h+='<div class="bw tot"><div class="bl">'+diffLabel+'</div><div class="bv" style="color:'+diffColor+'">$'+fm(Math.abs(diff))+'</div></div></div>';
+
+  h+='<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>';
+  $('rc').innerHTML=h;
+  $('s'+cs).classList.remove('active');$('sr').classList.add('active');
+  for(var i=1;i<=4;i++)$('p'+i).className='ps d';
+  $('sn').textContent='\u2713';cs=5;window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startOver(){
+  $('sr').classList.remove('active');$('s1').classList.add('active');cs=1;
+  for(var i=1;i<=4;i++){var e=$('p'+i);e.className='ps';if(i===1)e.classList.add('a')}
+  $('sn').textContent='1';
+  document.querySelectorAll('.di input, .ni input').forEach(function(i){i.value=''});
+  document.querySelectorAll('input[type="checkbox"]').forEach(function(i){i.checked=false});
+  document.querySelectorAll('input[type="radio"]').forEach(function(i){if(i.value==='26')i.checked=true;else i.checked=false});
+  var flSel=$('flSelect');if(flSel)flSel.selectedIndex=0;
+  $('j2wrap').style.display='none';$('wh2wrap').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var b1=document.querySelector('[data-btn-id="btn1"]');if(b1)b1.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b2=document.querySelector('[data-btn-id="btn2"]');if(b2)b2.addEventListener("click",function(e){e.preventDefault();go(1)});
+  var b3=document.querySelector('[data-btn-id="btn3"]');if(b3)b3.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b4=document.querySelector('[data-btn-id="btn4"]');if(b4)b4.addEventListener("click",function(e){e.preventDefault();go(2)});
+  var b5=document.querySelector('[data-btn-id="btn5"]');if(b5)b5.addEventListener("click",function(e){e.preventDefault();go(4)});
+  var b6=document.querySelector('[data-btn-id="btn6"]');if(b6)b6.addEventListener("click",function(e){e.preventDefault();go(3)});
+  var b7=document.querySelector('[data-btn-id="btn7"]');if(b7)b7.addEventListener("click",function(e){e.preventDefault();calc()});
+});
+document.addEventListener("click", function(e){
+  var t=e.target;if(t.tagName==="BUTTON"||t.closest("button")){t=t.closest("button")||t;var action=t.getAttribute("data-action");if(action==="print")window.print();if(action==="startOver")startOver()}
+});
+</script>
+</body>
+</html>
