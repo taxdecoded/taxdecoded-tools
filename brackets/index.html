@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tax Bracket Visualizer | TaxDecoded — 2025</title>
+<title>Tax Bracket Visualizer | TaxDecoded — 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
@@ -128,7 +128,7 @@ select{font-size:16px}
 </div>
 <script>
 (function(){
-  var CODE='BRACKETS2025',KEY='td_access_brackets';
+  var CODE='BRACKETS2026',KEY='td_access_brackets';
   if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
   var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
   function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
@@ -137,13 +137,13 @@ select{font-size:16px}
 })();
 </script>
 <div class="ctr">
-  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Tax Bracket Visualizer</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Tax Bracket Visualizer</div><div class="phs">Tax Year 2026 &mdash; Prepared for your records</div></div>
   <div class="hdr">
     <div class="brand"><span>Tax</span><span>Decoded</span></div>
     <div class="brand-line"></div>
-    <div class="hdr-badge">Tax Brackets &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <div class="hdr-badge">Tax Brackets &nbsp;&#10022;&nbsp; Tax Year 2026</div>
     <h1>See Where Every<br><em>Dollar Gets Taxed.</em></h1>
-    <p>Visualize exactly how the 2025 federal tax brackets apply to your income &mdash; marginal vs. effective rate, dollar by dollar.</p>
+    <p>Visualize exactly how the 2026 federal tax brackets apply to your income &mdash; marginal vs. effective rate, dollar by dollar.</p>
   </div>
 
   <!-- Input -->
@@ -168,14 +168,14 @@ function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumF
 function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
 document.querySelectorAll('.di input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
 
-/* 2025 Tax Brackets (OBBBA) */
+/* 2026 Tax Brackets (OBBBA) */
 var bk={
-  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
-  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
-  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
-  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  single:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[643900,.35],[Infinity,.37]],
+  mfj:[[24500,.10],[99700,.12],[212500,.22],[405750,.24],[515350,.32],[773050,.35],[Infinity,.37]],
+  mfs:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[386525,.35],[Infinity,.37]],
+  hoh:[[17500,.10],[66700,.12],[106250,.22],[202850,.24],[257500,.32],[643900,.35],[Infinity,.37]]
 };
-var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+var stdDeds={single:16200,mfj:32400,mfs:16200,hoh:24300};
 var barColors=['#5b8fb9','#4a7fa8','#3d6f97','#2f5f86','#244f75','#1a3f64','#102f53'];
 var rateLabels=['10%','12%','22%','24%','32%','35%','37%'];
 
@@ -225,7 +225,7 @@ function calc(){
 
   /* Build results */
   var h='<div class="rh">';
-  h+='<div class="rec-label">'+fsLabel+' — Tax Year 2025</div>';
+  h+='<div class="rec-label">'+fsLabel+' — Tax Year 2026</div>';
   h+='<h2>Your Tax Brackets</h2>';
   h+='<div class="sav"><div class="sv-a">$'+fm(totalTax)+'</div>';
   h+='<div class="sv-l">total federal income tax on $'+fw(taxableIncome)+' taxable income</div>';

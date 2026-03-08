@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estimated Tax Payment Calculator | TaxDecoded — 2025</title>
+<title>Estimated Tax Payment Calculator | TaxDecoded — 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
@@ -120,7 +120,7 @@ select{font-size:16px}
 </div>
 <script>
 (function(){
-  var CODE='ESTIMATED2025',KEY='td_access_estimated';
+  var CODE='ESTIMATED2026',KEY='td_access_estimated';
   if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
   var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
   function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
@@ -129,11 +129,11 @@ select{font-size:16px}
 })();
 </script>
 <div class="ctr">
-  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Estimated Tax Payment Calculator</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">Estimated Tax Payment Calculator</div><div class="phs">Tax Year 2026 &mdash; Prepared for your records</div></div>
   <div class="hdr">
     <div class="brand"><span>Tax</span><span>Decoded</span></div>
     <div class="brand-line"></div>
-    <div class="hdr-badge">Quarterly Payments &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <div class="hdr-badge">Quarterly Payments &nbsp;&#10022;&nbsp; Tax Year 2026</div>
     <h1>Know What You Owe.<br><em>Pay on Time.</em></h1>
     <p>Calculate your quarterly estimated tax payments and avoid underpayment penalties &mdash; for any income type.</p>
   </div>
@@ -190,15 +190,15 @@ function go(n){
   $('sn').textContent=Math.min(n,3);cs=n;window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* 2025 Tax Brackets */
+/* 2026 Tax Brackets (OBBBA) */
 var bk={
-  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
-  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
-  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
-  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  single:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[643900,.35],[Infinity,.37]],
+  mfj:[[24500,.10],[99700,.12],[212500,.22],[405750,.24],[515350,.32],[773050,.35],[Infinity,.37]],
+  mfs:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[386525,.35],[Infinity,.37]],
+  hoh:[[17500,.10],[66700,.12],[106250,.22],[202850,.24],[257500,.32],[643900,.35],[Infinity,.37]]
 };
 function calcTax(ti,f){var t=0,p=0;for(var j=0;j<bk[f].length;j++){var l=bk[f][j][0],r=bk[f][j][1],a=Math.min(ti,l)-p;if(a<=0)break;t+=a*r;p=l}return t}
-var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+var stdDeds={single:16200,mfj:32400,mfs:16200,hoh:24300};
 
 function calc(){
   var f=$('flSelect').value;
@@ -209,7 +209,7 @@ function calc(){
 
   /* SE Tax */
   var seNet=seInc*0.9235; // 92.35% of net SE income
-  var ssCap=176100;
+  var ssCap=181200;
   var ssWagesUsed=Math.min(w2,ssCap);
   var ssSeBase=Math.min(Math.max(ssCap-ssWagesUsed,0),seNet);
   var ssTax=ssSeBase*0.124;
@@ -281,11 +281,11 @@ function calc(){
 
   /* Quarterly schedule */
   if(qtrDue>0){
-    h+='<div class="bd"><div class="bh">2025 Quarterly Payment Schedule</div>';
-    h+='<div class="bw due"><div class="bl"><strong>Q1</strong> &mdash; April 15, 2025</div><div class="bv">$'+fm(q1)+'</div></div>';
-    h+='<div class="bw due"><div class="bl"><strong>Q2</strong> &mdash; June 16, 2025</div><div class="bv">$'+fm(q2)+'</div></div>';
-    h+='<div class="bw due"><div class="bl"><strong>Q3</strong> &mdash; September 15, 2025</div><div class="bv">$'+fm(q3)+'</div></div>';
-    h+='<div class="bw due"><div class="bl"><strong>Q4</strong> &mdash; January 15, 2026</div><div class="bv">$'+fm(q4)+'</div></div>';
+    h+='<div class="bd"><div class="bh">2026 Quarterly Payment Schedule</div>';
+    h+='<div class="bw due"><div class="bl"><strong>Q1</strong> &mdash; April 15, 2026</div><div class="bv">$'+fm(q1)+'</div></div>';
+    h+='<div class="bw due"><div class="bl"><strong>Q2</strong> &mdash; June 15, 2026</div><div class="bv">$'+fm(q2)+'</div></div>';
+    h+='<div class="bw due"><div class="bl"><strong>Q3</strong> &mdash; September 15, 2026</div><div class="bv">$'+fm(q3)+'</div></div>';
+    h+='<div class="bw due"><div class="bl"><strong>Q4</strong> &mdash; January 15, 2027</div><div class="bv">$'+fm(q4)+'</div></div>';
     h+='<div class="bw tot"><div class="bl">Total Estimated Payments</div><div class="bv">$'+fm(q1*4)+'</div></div></div>';
   }
 
@@ -322,7 +322,7 @@ function calc(){
   if(niit>0) h+='<div class="bw"><div class="bl">Net investment income tax (3.8%)</div><div class="bv">$'+fm(niit)+'</div></div>';
   h+='<div class="bw tot"><div class="bl">Total Estimated Tax</div><div class="bv">$'+fm(totalTax)+'</div></div></div>';
 
-  h+='<div class="nb blu"><strong>How to pay:</strong> Use IRS Direct Pay (irs.gov/payments) or mail Form 1040-ES vouchers. Select "Estimated Tax" as the reason for payment and the correct tax year (2025).</div>';
+  h+='<div class="nb blu"><strong>How to pay:</strong> Use IRS Direct Pay (irs.gov/payments) or mail Form 1040-ES vouchers. Select "Estimated Tax" as the reason for payment and the correct tax year (2026).</div>';
 
   h+='<div class="ra"><button class="btn bs" data-action="print">Print Results</button><button class="btn bp" data-action="startOver">Start Over</button></div>';
   $('rc').innerHTML=h;

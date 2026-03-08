@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>W-4 Withholding Optimizer | TaxDecoded — 2025</title>
+<title>W-4 Withholding Optimizer | TaxDecoded — 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#1a2744;--navy-mid:#243352;--gold:#c5a55a;--gold-dark:#a88c3e;--gold-light:#d4bb7a;--gold-pale:#f5ecd4;--gold-bg:#fdf8ee;--cream:#f9f5ec;--cream-dark:#f0e8d6;--white:#fff;--text:#1a2744;--text-sec:#5a6272;--text-lt:#8a9099;--green:#2d855e;--green-pale:#e8f5ee;--green-dk:#1f6b47;--red:#b5372a;--bdr:#e4ddd0;--bdr-lt:#eee8db;--sh-sm:0 1px 3px rgba(26,39,68,.05);--sh-md:0 4px 20px rgba(26,39,68,.08);--sh-lg:0 8px 40px rgba(26,39,68,.10);--r:10px;--rl:14px}
@@ -133,7 +133,7 @@ select{font-size:16px}
 </div>
 <script>
 (function(){
-  var CODE='W42025',KEY='td_access_w4';
+  var CODE='W42026',KEY='td_access_w4';
   if(sessionStorage.getItem(KEY)==='1'){document.getElementById('accessGate').style.display='none';return}
   var inp=document.getElementById('gateInput'),btn=document.getElementById('gateBtn'),err=document.getElementById('gateError');
   function check(){var v=inp.value.trim().toUpperCase();if(v===CODE){sessionStorage.setItem(KEY,'1');document.getElementById('accessGate').style.display='none'}else{err.style.display='block';inp.style.borderColor='var(--red)';inp.value=''}}
@@ -142,11 +142,11 @@ select{font-size:16px}
 })();
 </script>
 <div class="ctr">
-  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">W-4 Withholding Optimizer</div><div class="phs">Tax Year 2025 &mdash; Prepared for your records</div></div>
+  <div class="ph"><div class="phb"><span>Tax</span><span>Decoded</span></div><div class="phr"></div><div class="pht">W-4 Withholding Optimizer</div><div class="phs">Tax Year 2026 &mdash; Prepared for your records</div></div>
   <div class="hdr">
     <div class="brand"><span>Tax</span><span>Decoded</span></div>
     <div class="brand-line"></div>
-    <div class="hdr-badge">W-4 Withholding &nbsp;&#10022;&nbsp; Tax Year 2025</div>
+    <div class="hdr-badge">W-4 Withholding &nbsp;&#10022;&nbsp; Tax Year 2026</div>
     <h1>Stop Overpaying.<br><em>Optimize Your W-4.</em></h1>
     <p>Get the exact numbers for your W-4 so you don't overwithhold (free loan to the IRS) or underwithhold (surprise tax bill).</p>
   </div>
@@ -155,7 +155,7 @@ select{font-size:16px}
   <!-- Step 1: Filing Info -->
   <div class="step active" id="s1"><div class="card"><div class="ch"><div class="ct">Step 1: Your Filing Information</div></div><div class="ci">We'll use this to determine your standard deduction and tax brackets. Enter your numbers in the <strong>highlighted gold fields</strong>.</div>
     <div class="f"><label>Filing Status</label><select id="flSelect" style="width:100%;padding:13px 12px;border:2px solid var(--gold-pale);background:var(--gold-bg);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:16px;color:var(--text);appearance:auto;-webkit-appearance:menulist;min-height:48px"><option value="">— Select filing status —</option><option value="single">Single</option><option value="mfj">Married Filing Jointly</option><option value="mfs">Married Filing Separately</option><option value="hoh">Head of Household</option></select></div>
-    <div class="f"><label>Number of qualifying children under 17 <span class="tip" tabindex="0">?<span class="tt">Children who lived with you for more than half the year and are under age 17 at end of 2025. Used for the Child Tax Credit ($2,200/child under OBBBA).</span></span></label><div class="ni"><input type="text" id="numKids" placeholder="0" inputmode="numeric"></div></div>
+    <div class="f"><label>Number of qualifying children under 17 <span class="tip" tabindex="0">?<span class="tt">Children who lived with you for more than half the year and are under age 17 at end of 2026. Used for the Child Tax Credit ($2,200/child under OBBBA).</span></span></label><div class="ni"><input type="text" id="numKids" placeholder="0" inputmode="numeric"></div></div>
     <div class="f"><label>Number of other dependents <span class="tip" tabindex="0">?<span class="tt">Dependents who don't qualify for the Child Tax Credit (e.g., children 17+, elderly parents). $500 credit each.</span></span></label><div class="ni"><input type="text" id="numOther" placeholder="0" inputmode="numeric"></div></div>
     <div class="br"><button class="btn bp" data-btn-id="btn1">Continue &rarr;</button></div></div></div>
 
@@ -212,17 +212,17 @@ function go(n){
   $('sn').textContent=Math.min(n,4);cs=n;window.scrollTo({top:0,behavior:'smooth'});
 }
 
-/* 2025 Tax Brackets (OBBBA) */
+/* 2026 Tax Brackets (OBBBA) */
 var bk={
-  single:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[626350,.35],[Infinity,.37]],
-  mfj:[[23850,.10],[96950,.12],[206700,.22],[394600,.24],[501050,.32],[751600,.35],[Infinity,.37]],
-  mfs:[[11925,.10],[48475,.12],[103350,.22],[197300,.24],[250525,.32],[375800,.35],[Infinity,.37]],
-  hoh:[[17000,.10],[64850,.12],[103350,.22],[197300,.24],[250500,.32],[626350,.35],[Infinity,.37]]
+  single:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[643900,.35],[Infinity,.37]],
+  mfj:[[24500,.10],[99700,.12],[212500,.22],[405750,.24],[515350,.32],[773050,.35],[Infinity,.37]],
+  mfs:[[12250,.10],[49850,.12],[106250,.22],[202850,.24],[257550,.32],[386525,.35],[Infinity,.37]],
+  hoh:[[17500,.10],[66700,.12],[106250,.22],[202850,.24],[257500,.32],[643900,.35],[Infinity,.37]]
 };
 function calcTax(ti,f){var t=0,p=0;for(var j=0;j<bk[f].length;j++){var l=bk[f][j][0],r=bk[f][j][1],a=Math.min(ti,l)-p;if(a<=0)break;t+=a*r;p=l}return t}
 
-/* Standard deductions 2025 OBBBA */
-var stdDeds={single:15750,mfj:31500,mfs:15750,hoh:23625};
+/* Standard deductions 2026 OBBBA */
+var stdDeds={single:16200,mfj:32400,mfs:16200,hoh:24300};
 
 function calc(){
   var f=$('flSelect').value;
