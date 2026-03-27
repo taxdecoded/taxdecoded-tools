@@ -193,7 +193,7 @@ function $(i){return document.getElementById(i)}
 function fm(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function fw(n){return n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
 function pv(i){return parseFloat($(i).value.replace(/[^0-9.]/g,''))||0}
-document.querySelectorAll('.di input, .ni input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
+document.querySelectorAll('.di input').forEach(function(i){i.addEventListener('blur',function(){var n=parseFloat(this.value.replace(/[^0-9.]/g,''));if(!isNaN(n)&&n>0)this.value=fw(n)});i.addEventListener('focus',function(){this.value=this.value.replace(/,/g,'')})});
 $('hasJob2').addEventListener('change',function(){var s=this.checked?'block':'none';$('j2wrap').style.display=s;$('wh2wrap').style.display=s});
 
 var cs=1;
